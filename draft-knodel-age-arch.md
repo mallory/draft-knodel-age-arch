@@ -9,17 +9,17 @@ number:
 date:
 consensus: true
 v: 3
-area: IAB
-workgroup: 
+# area: IAB
+# workgroup:
 keyword:
  - age verification
 venue:
-  group: 
-  type: 
-  mail: 
-  arch: 
-  github: mallory/draft-knodel-age-arch
-  latest: 
+#  group:
+#  type:
+#  mail:
+#  arch:
+  github: "mallory/draft-knodel-age-arch"
+  latest:
 
 author:
  -
@@ -59,7 +59,7 @@ Relatively new are proposals to protect children via age gate. Age gating in the
 
 Some services, websites, or apps require uploading hard documents to verify identity, just as some services, websites or apps require payment with a credit card. These often create an illusion for policy makers that users could be required by any service to require sharing of the same hard documents or credit card details in order to verify age at scale, both for all users and for a wide variety of platforms and services. However any such system is expensive, difficult to scale, and introduces data protection liability and privacy risks to users— including potential data breaches or the exclusion of users who do not possess traditional identity documents but who would otherwise be lawful users. Hard document identity review in the context of general-use platforms like social media unnecessarily scales the risk of privacy, access, and equity harms from requisite age gating for all users on all apps all the time.
 
-Many age verification methods conflict with data-protection frameworks and data minimization principles and pose serious safety, data security, and privacy risks. As such risks will be present in nearly all alternative methods of age verification, an overview of this category of risk will be of some benefit, while we leave method-specific commentary to the security, privacy and human rights considerations sections. Requiring all users on all platforms to submit verifiable credentials can create large, sensitive data troves in centralized intermediaries that are vulnerable to breaches, fraud, or misuse. Once compromised, this information is difficult—if not impossible—to secure again. Compounding these concerns, precise location—required to determine compliance with jurisdiction-specific laws—is implicitly inferred in all methods, adding another layer of sensitive data to the name and age information being collected, processed, and stored. 
+Many age verification methods conflict with data-protection frameworks and data minimization principles and pose serious safety, data security, and privacy risks. As such risks will be present in nearly all alternative methods of age verification, an overview of this category of risk will be of some benefit, while we leave method-specific commentary to the security, privacy and human rights considerations sections. Requiring all users on all platforms to submit verifiable credentials can create large, sensitive data troves in centralized intermediaries that are vulnerable to breaches, fraud, or misuse. Once compromised, this information is difficult—if not impossible—to secure again. Compounding these concerns, precise location—required to determine compliance with jurisdiction-specific laws—is implicitly inferred in all methods, adding another layer of sensitive data to the name and age information being collected, processed, and stored.
 
 From an operational and architectural perspective, centralizing or repeatedly exchanging such verification data may also create systemic risks to resilience, security, and interoperability. Large-scale credential exchanges or cross-border look-ups introduce new attack surfaces and potential points of failure within authentication or content-delivery paths.
 
@@ -71,7 +71,7 @@ Language matters because it shapes how we think about these systems. "Assurance"
 
 **Age Assurance** – Broader set of methods providing confidence about a user’s age or age range without requiring formal identity verification.
 
-**Age-gating** \- refers to age-based restrictions on access to online services. Age gating can be required by law or voluntarily imposed as a corporate decision. 
+**Age-gating** \- refers to age-based restrictions on access to online services. Age gating can be required by law or voluntarily imposed as a corporate decision.
 
 **Age Estimation** \- Instead of asking you directly, the system *guesses* your age based on data it collects about you.
 
@@ -101,7 +101,7 @@ Language matters because it shapes how we think about these systems. "Assurance"
 
 # Analysis of age gating methods
 
-In this section, we analyse purely based on the efficacy of providing and restricting access based on age. Efficacy means that it works, but also we consider feasibility, circumvention and accuracy. 
+In this section, we analyse purely based on the efficacy of providing and restricting access based on age. Efficacy means that it works, but also we consider feasibility, circumvention and accuracy.
 
 Efficacy should also reflect cooperation across layers—service, device, and network—so that no single actor bears full responsibility or control of user data. In/Feasibility also includes operational scalability—methods that add latency or centralize look-ups may weaken both reliability and privacy. Circumvention may occur not only by users but also through weak or misaligned intermediaries; distributing enforcement across independent layers limits large-scale bypass. In/accuracy of the method, false positives and negatives, and what users can do about it. Recourse and remedy, e.g. who is responsible and what happens when: the determination of age could be wrong; age-verification is inaccurate; no one adopts it and users don’t use it; people abuse it; companies abuse it; there is a breach; it can be circumvented.
 
@@ -121,7 +121,7 @@ Other hard documents that risk being less accurate include credit card (no birth
 
 Even in digital form, such as national eID or mobile driving-licence systems, these credentials expose more information than necessary.
 
-## Age verification 
+## Age verification
 
 Age verification is performed when a guardian, the service or third party has direct, verified knowledge of the credential and assures a service of age. Hard document review would require the disclosure of documents containing a wide variety of sensitive information. This information would not be limited to a users’ age and would include data not necessary to determine whether or not a user should be permitted to use a social media platform (e.g., address, credit card number, etc.). Requiring such disclosures of all users would create substantial security and privacy concerns (e.g., risk of data breaches, exposure of additional personal information to platforms themselves).
 
@@ -145,7 +145,7 @@ In many jurisdictions, regulated entities such as banks or telecommunications op
 
 Verifiers should be held accountable in systems where they are disclosed information (no matter how privacy preserving). Those presenting proofs should have a way to report or contest a request or determination made within these systems. Especially in the case of denial of access. Treating the user as the only potentially hostile party would ignore the power dynamics in jurisdictions where age verification is mandatory. Also, verifiers should be held to a standard of reporting and registration of their scope of collection. Especially in countries where age verification systems are being developed in tandem with digital ID systems.
 
-## Age assurance 
+## Age assurance
 
 Age assurance is an umbrella term often used to describe the various methods whereby the user, a guardian, the service, third party, or age verification service assures the service of age to the direct, or verified knowledge of the credential to various degrees of confidence.
 
@@ -159,7 +159,7 @@ Connecting new users to parents’ accounts, COPPA “requires those operators t
 
 An additional concern is that this measure proliferates rather severely user data, risking feasibility. Rather than minimizing data not just about the child but for the parent, this requires all parents to first verify their age (invoke recursion analysis). Verifiable consent is then required in addition to verifying a parent-child relationship between users, all of which invoke hard document review.
 
-Non-state institutional or contract-bound intermediary like a court-appointed guardian, a school or an employer. The linking of undergraduate and professional emails as methods by which social media platforms could increase the accuracy of their age verification processes fall short because these are typically only given to individuals of undergraduate or professional age, eg o18. At the same time requiring an undergraduate or professional email is likely to exclude a substantial number of adults. Users aged 13-17 who have not begun attending undergraduate institutions or working in professional environment will be unable to create accounts on the platform as a result Additionally, users from lower-income backgrounds, homeschool settings, or international markets where educational institutions do not provide email addresses will be irrationally excluded. Such an arbitrary and discriminatory outcome would amount to an unreasonable limit on access. 
+Non-state institutional or contract-bound intermediary like a court-appointed guardian, a school or an employer. The linking of undergraduate and professional emails as methods by which social media platforms could increase the accuracy of their age verification processes fall short because these are typically only given to individuals of undergraduate or professional age, eg o18. At the same time requiring an undergraduate or professional email is likely to exclude a substantial number of adults. Users aged 13-17 who have not begun attending undergraduate institutions or working in professional environment will be unable to create accounts on the platform as a result Additionally, users from lower-income backgrounds, homeschool settings, or international markets where educational institutions do not provide email addresses will be irrationally excluded. Such an arbitrary and discriminatory outcome would amount to an unreasonable limit on access.
 
 The service itself could perform age verification, age estimation or age assurance via the user directly or a third party, eg guardian.
 
@@ -195,7 +195,7 @@ Devices enforce by interpreting or acting on signals from applications, browsers
 
 Some considerations for networks that enforce age gating may be instructive for any system design as well, though content moderation at this lower network layer tends to be objectionable \[\[RFC 9505\]\]:
 
-* There exist internet standards for any service to signal to the user that it is adult-only. Any device, including web browsers, can elect to confirm this signal. It would be recommended to require all services that disallow users under a specific age to use this standard to use the “restricted to adults” label and that the OS, browser and app levels heed this signal. (RTA Label, available at [https://www.rtalabel.org/](https://www.rtalabel.org/)) This should also be paired with self-attestation methods. Enforced by an ISP would be network level censorship.  
+* There exist internet standards for any service to signal to the user that it is adult-only. Any device, including web browsers, can elect to confirm this signal. It would be recommended to require all services that disallow users under a specific age to use this standard to use the “restricted to adults” label and that the OS, browser and app levels heed this signal. (RTA Label, available at [https://www.rtalabel.org/](https://www.rtalabel.org/)) This should also be paired with self-attestation methods. Enforced by an ISP would be network level censorship.
 * Similar signaling could extend to DNS or resolver functions, where privacy-preserving flags indicate that a domain hosts age-restricted material. \[\[cite [http://blog.cloudflare.com/introducing-1-1-1-1-for-families/](http://blog.cloudflare.com/introducing-1-1-1-1-for-families/)\]\] Such information can guide optional filtering at the user or guardian’s request without content inspection or identity disclosure.
 
 There is a view that common, interoperable approaches across service, device, and network layers could lower compliance costs and align incentives for safer adoption. However this lowering of barriers to implementation would be considered a negative if age-gating is considered a form of disenfranchisement and censorship, or if the age-gating capabilities are applied to additional attributes of end users.
@@ -270,7 +270,7 @@ When security tools are considered services that need age-gating such as in prop
 
 Hard document review – If instantiated, such measures would require the collection, processing, storage and securing of sensitive personal data from all users, including minors, which increases the risk of harm in the case of data breaches. (Privacy International, The Sustainable Development Goals, Identity, and Privacy: Does their implementation risk human rights? (Aug. 29, 2018), https://privacyinternational.org/long-read/2237/sustainable-development-goals-identity-and-privacy-does-their-implementation-risk) This processing and storage are vectors for mass and targeted surveillance by any State jurisdiction party to the UN Convention on Cybercrime.
 
-Guardian and parental controls – This approach leaves the responsibility for age verification to parents, which can be fraught in some of the most acute cases of child abuse. \[\[Lily Hay Newman, Apple Kills Its Plan to Scan Your Photos for CSAM. Here’s What’s Next, WIRED (Dec. 7, 2022), [https://www.wired.com/story/apple-photo-scanning-csam-communication-safety-messages/](https://www.wired.com/story/apple-photo-scanning-csam-communication-safety-messages/)\]\] In short, outside the context of mandatory age verification, these mechanisms can be used as tools for abusive parental or guardian surveillance. 
+Guardian and parental controls – This approach leaves the responsibility for age verification to parents, which can be fraught in some of the most acute cases of child abuse. \[\[Lily Hay Newman, Apple Kills Its Plan to Scan Your Photos for CSAM. Here’s What’s Next, WIRED (Dec. 7, 2022), [https://www.wired.com/story/apple-photo-scanning-csam-communication-safety-messages/](https://www.wired.com/story/apple-photo-scanning-csam-communication-safety-messages/)\]\] In short, outside the context of mandatory age verification, these mechanisms can be used as tools for abusive parental or guardian surveillance.
 
 If the surveillance power is given to the state instead, encouraging oversight by a potentially abusive regime is of real concern. Neither state nor parental control addresses in-person abuse of a child and technology can not solve that societal issue.
 
@@ -284,7 +284,7 @@ In general, any mandatory age verification will technically enforce limitations 
 
 With third-party verification – the providers involved notwithstanding, the centralized risk of data being resold or mishandled increases.
 
-Guardian and parental controls – The main concern with these parental controls features is that they enable use but potentially, depending on how they are designed, surveilled use, which may harm children and teens by creating confusion about their privacy and autonomy. On the one hand they may feel a false sense of privacy and that their activities are insulated from the platform, and on the other hand they might self-censor out of concern for the oversight that the parental controls provide their caretakers. These proposals take a narrow view of parent-child relationships and fail to consider the harms as described briefly by CDT: “In particular, LGBTQ youth and children in abusive homes are especially vulnerable to injury and reprisals, including from their parents or guardians, and may inadvertently expose sensitive information about themselves or their friends to adults, with disastrous consequences.” \[\[cite CDT: Apple’s Changes to Messaging and Photo Services Threaten Users’ Security and Privacy, (Aug. 5, 2021), [https://cdt.org/press/cdt-apples-changes-to-messaging-and-photo-services-threaten-users-security-and-privacy](https://cdt.org/press/cdt-apples-changes-to-messaging-and-photo-services-threaten-users-security-and-privacy)\]\] 
+Guardian and parental controls – The main concern with these parental controls features is that they enable use but potentially, depending on how they are designed, surveilled use, which may harm children and teens by creating confusion about their privacy and autonomy. On the one hand they may feel a false sense of privacy and that their activities are insulated from the platform, and on the other hand they might self-censor out of concern for the oversight that the parental controls provide their caretakers. These proposals take a narrow view of parent-child relationships and fail to consider the harms as described briefly by CDT: “In particular, LGBTQ youth and children in abusive homes are especially vulnerable to injury and reprisals, including from their parents or guardians, and may inadvertently expose sensitive information about themselves or their friends to adults, with disastrous consequences.” \[\[cite CDT: Apple’s Changes to Messaging and Photo Services Threaten Users’ Security and Privacy, (Aug. 5, 2021), [https://cdt.org/press/cdt-apples-changes-to-messaging-and-photo-services-threaten-users-security-and-privacy](https://cdt.org/press/cdt-apples-changes-to-messaging-and-photo-services-threaten-users-security-and-privacy)\]\]
 
 # Human rights considerations
 
