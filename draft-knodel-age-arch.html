@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>Age Verification Architecture</title>
+<meta content="Mallory Knodel" name="author">
+<meta content="Gianpaolo Angelo Scalone" name="author">
+<meta content="Tom Newton" name="author">
+<meta content="
+       This document describes solution-agnostic and technology-neutral schema for how various intermediaries can gate content and services based on age. The analysis of the architecture is done based on the effectiveness of permitting or restricting access based on age. The document concludes with recommendations as well as critical privacy, security and human rights considerations. 
+    " name="description">
+<meta content="xml2rfc 3.31.0" name="generator">
+<meta content="age verification" name="keyword">
+<meta content="draft-todo-yourname-protocol-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.31.0
+    Python 3.12.12
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.1
+    intervaltree 3.1.0
+    Jinja2 3.1.6
+    lxml 5.3.1
+    platformdirs 4.5.0
+    pycountry 24.6.1
+    PyYAML 6.0.2
+    requests 2.32.5
+    wcwidth 0.2.14
+-->
+<link href="draft-knodel-age-arch.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 680;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+  & li {
+    margin-top: 0.5em;
+  }
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+    }
+  }
+  &.olPercent > dt {
+    float: none;
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+}
+dl:not(.dlNewline) > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+  caption-side: bottom;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
+}
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
+}
+
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
+}
+
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
+}
+
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+/* Comments */
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+    & > ul { margin-bottom: 2em; }
+    & ul {
+      margin: 0 0 0 4px;
+      & :is(p, li) {
+        margin: 2px 0;
+      }
+    }
+  }
+  #toc a.toplink {
+    float: right;
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    &::before { /* css hamburger */
+      float: right;
+      position: relative;
+      width: 1em;
+      height: 1px;
+      left: -164px;
+      margin: 8px 0 0 0;
+      background: white none repeat scroll 0 0;
+      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+      content: "";
+    }
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active {
+    opacity: 1;
+    & nav { display: block; }
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:is(:link, :focus, :hover),
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin: 2px 0.5em 0;
+  }
+}
+
+/* TOC layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+  #toc a.toplink {
+    margin: 8px 0.5em 0;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">age-arch</td>
+<td class="right">November 2025</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Knodel, et al.</td>
+<td class="center">Expires 7 May 2026</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">Network Working Group</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-todo-yourname-protocol-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2025-11-03" class="published">3 November 2025</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2026-05-07">7 May 2026</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">M. Knodel</div>
+<div class="org">Social Web Foundation</div>
+</div>
+<div class="author">
+      <div class="author-name">G. A. Scalone</div>
+<div class="org">Vodafone Group</div>
+</div>
+<div class="author">
+      <div class="author-name">T. Newton</div>
+<div class="org">Qoria</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">Age Verification Architecture</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document describes solution-agnostic and technology-neutral schema for how various intermediaries can gate content and services based on age. The analysis of the architecture is done based on the effectiveness of permitting or restricting access based on age. The document concludes with recommendations as well as critical privacy, security and human rights considerations.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-about-this-document">
+<a href="#name-about-this-document" class="section-name selfRef">About This Document</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-todo-yourname-protocol/">https://datatracker.ietf.org/doc/draft-todo-yourname-protocol/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/mallory/draft-knodel-age-arch">https://github.com/mallory/draft-knodel-age-arch</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 7 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2025 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-background" class="internal xref">Background</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-analysis-of-age-gating-meth" class="internal xref">Analysis of age gating methods</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-age-credentials" class="internal xref">Age credentials</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-age-verification" class="internal xref">Age verification</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-age-assurance" class="internal xref">Age assurance</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4">
+                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="auto internal xref">2.4</a>.  <a href="#name-age-estimation" class="internal xref">Age estimation</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.5">
+                <p id="section-toc.1-1.2.2.5.1"><a href="#section-2.5" class="auto internal xref">2.5</a>.  <a href="#name-other" class="internal xref">Other</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-enforcement" class="internal xref">Enforcement</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-types-of-web-based-platform" class="internal xref">Types of web-based platforms and internet services</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-types-of-platforms-and-serv" class="internal xref">Types of Platforms and Services</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-concluding-recommendations" class="internal xref">Concluding recommendations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-privacy-considerations" class="internal xref">Privacy considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-human-rights-considerations" class="internal xref">Human rights considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-free-expression" class="internal xref">Free expression</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-free-association" class="internal xref">Free association</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="auto internal xref">9.3</a>.  <a href="#name-social-rights" class="internal xref">Social Rights</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4">
+                <p id="section-toc.1-1.9.2.4.1"><a href="#section-9.4" class="auto internal xref">9.4</a>.  <a href="#name-cultural-rights" class="internal xref">Cultural Rights</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5">
+                <p id="section-toc.1-1.9.2.5.1"><a href="#section-9.5" class="auto internal xref">9.5</a>.  <a href="#name-economic-rights" class="internal xref">Economic Rights</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="background">
+<section id="section-1">
+      <h2 id="name-background">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-background" class="section-name selfRef">Background</a>
+      </h2>
+<p id="section-1-1">Our goal is to describe the technical difficulties in any age-gating mechanism such that it is effective and does not introduce security and privacy risks as well as contravene human rights. We also hope to show that age verification mechanisms are wholly technical solutions that are separate from, albeit often motivated by, the means of protecting young people online.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">Prior focus on child safety has led to robust trust and safety measures taken by large user platforms whereby content and behaviour moderation became industry standard. Its phases: Define, detect, evaluate, enforce, appeal, educate. This cycle ensures that criminal and unlawful content is taken down. Platforms and services with user generated content can also use this cycle to ensure content or behavior that violates platform terms of service.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">In parallel, network operators have for many years implemented forms of age-based access control that rely on content categorization or DNS-level filtering rather than on the collection of personal data. In several jurisdictions, ISPs are required to offer or enforce filtering systems that restrict access to adult or otherwise unsuitable content for minors. These systems typically work by classifying destination domains or content types into broad categories—such as adult, gambling, or violence—and allowing or blocking them according to the subscriber’s or guardian’s chosen policy. Because they do not require identity documents or individual profiling, such network-assisted methods can provide a baseline of child protection with substantially lower privacy risk. These approaches cannot replace service-level moderation or legal accountability, nor should they be standalone solutions outside of parental controls or family management settings.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">Relatively new are proposals to protect children via age gate. Age gating in the analog world is typically enforced at the point of action, sale or entry through hard document checks at liquor stores, as one example. Replicating age gating in the online world has encountered consistent tensions between accuracy and privacy, often reducing the problem to one of feasibility. Often, online age verification has taken the form of requiring websites to show a prompt to the user to self-declare their age or birthdate before they can gain access to content or services.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">Some services, websites, or apps require uploading hard documents to verify identity, just as some services, websites or apps require payment with a credit card. These often create an illusion for policy makers that users could be required by any service to require sharing of the same hard documents or credit card details in order to verify age at scale, both for all users and for a wide variety of platforms and services. However any such system is expensive, difficult to scale, and introduces data protection liability and privacy risks to users— including potential data breaches or the exclusion of users who do not possess traditional identity documents but who would otherwise be lawful users. Hard document identity review in the context of general-use platforms like social media unnecessarily scales the risk of privacy, access, and equity harms from requisite age gating for all users on all apps all the time.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">Many age verification methods conflict with data-protection frameworks and data minimization principles and pose serious safety, data security, and privacy risks. As such risks will be present in nearly all alternative methods of age verification, an overview of this category of risk will be of some benefit, while we leave method-specific commentary to the security, privacy and human rights considerations sections. Requiring all users on all platforms to submit verifiable credentials can create large, sensitive data troves in centralized intermediaries that are vulnerable to breaches, fraud, or misuse. Once compromised, this information is difficult—if not impossible—to secure again. Compounding these concerns, precise location—required to determine compliance with jurisdiction-specific laws—is implicitly inferred in all methods, adding another layer of sensitive data to the name and age information being collected, processed, and stored.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">From an operational and architectural perspective, centralizing or repeatedly exchanging such verification data may also create systemic risks to resilience, security, and interoperability. Large-scale credential exchanges or cross-border look-ups introduce new attack surfaces and potential points of failure within authentication or content-delivery paths.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<div id="terminology">
+<section id="section-1.1">
+        <h3 id="name-terminology">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
+        </h3>
+<p id="section-1.1-1">Language matters because it shapes how we think about these systems. "Assurance" is less official than "verification" and "estimation" admits inherent imprecision. [[cite https://www.eff.org/deeplinks/2025/10/age-verification-estimation-assurance-oh-my-guide-terminology]]<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2"><strong>Age Verification</strong> – Process of confirming a user’s age using an authoritative or verifiable source (e.g., government ID, credential, or trusted record).<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3"><strong>Age Assurance</strong> – Broader set of methods providing confidence about a user’s age or age range without requiring formal identity verification.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+<p id="section-1.1-4"><strong>Age-gating</strong> - refers to age-based restrictions on access to online services. Age gating can be required by law or voluntarily imposed as a corporate decision.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
+<p id="section-1.1-5"><strong>Age Estimation</strong> - Instead of asking you directly, the system <em>guesses</em> your age based on data it collects about you.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
+<p id="section-1.1-6"><strong>Self-Attestation</strong> – User-declared statement of age or date of birth without third-party validation.<a href="#section-1.1-6" class="pilcrow">¶</a></p>
+<p id="section-1.1-7"><strong>Guardian Attestation</strong> – Verification performed or consent provided by a parent or legal guardian on behalf of a minor.<a href="#section-1.1-7" class="pilcrow">¶</a></p>
+<p id="section-1.1-8"><strong>Intermediary</strong> – Any actor between the user and a service, including device OS, application platform, content-delivery system, resolver, or network operator.<a href="#section-1.1-8" class="pilcrow">¶</a></p>
+<p id="section-1.1-9"><strong>Service-Level Age Control</strong> – Mechanisms enforced by online platforms or applications (e.g., login requirements, content gating, or age tokens).<a href="#section-1.1-9" class="pilcrow">¶</a></p>
+<p id="section-1.1-10"><strong>Network-Assisted Age Control</strong> – Privacy-preserving measures implemented at or near the connectivity layer, such as DNS or policy-based content filtering, typically based on user or guardian preference and without identity collection.<a href="#section-1.1-10" class="pilcrow">¶</a></p>
+<p id="section-1.1-11"><strong>On-Device Assurance</strong> – Local verification or estimation methods executed on the user’s device (e.g., age-range inference, parental settings) where data does not leave the device.<a href="#section-1.1-11" class="pilcrow">¶</a></p>
+<p id="section-1.1-12"><strong>Credential Provider</strong> – Entity that issues, stores, or validates user credentials used for age verification or assurance.<a href="#section-1.1-12" class="pilcrow">¶</a></p>
+<p id="section-1.1-13"><strong>Data Minimization</strong> – Principle that personal data should be limited to what is necessary for a specific, explicit purpose (per frameworks such as GDPR).<a href="#section-1.1-13" class="pilcrow">¶</a></p>
+<p id="section-1.1-14"><strong>Privacy-Preserving Signaling</strong> – Exchange of metadata or tokens between system components to enforce policy without exposing personal identifiers.<a href="#section-1.1-14" class="pilcrow">¶</a></p>
+<p id="section-1.1-15"><strong>Shared-Responsibility Model</strong> – Architectural approach in which service, device, and network layers each contribute to age-appropriate access control within their scope, reducing centralization and single points of failure.<a href="#section-1.1-15" class="pilcrow">¶</a></p>
+<p id="section-1.1-16"><strong>Circumvention</strong> – Any attempt by users or systems to bypass or falsify age-related controls or policies.<a href="#section-1.1-16" class="pilcrow">¶</a></p>
+<p id="section-1.1-17"><strong>Jurisdictional Compliance</strong> – Ability of a system to align with local or national laws defining age-related content or access restrictions.<a href="#section-1.1-17" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="analysis-of-age-gating-methods">
+<section id="section-2">
+      <h2 id="name-analysis-of-age-gating-meth">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-analysis-of-age-gating-meth" class="section-name selfRef">Analysis of age gating methods</a>
+      </h2>
+<p id="section-2-1">In this section, we analyse purely based on the efficacy of providing and restricting access based on age. Efficacy means that it works, but also we consider feasibility, circumvention and accuracy.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">Efficacy should also reflect cooperation across layers—service, device, and network—so that no single actor bears full responsibility or control of user data. In/Feasibility also includes operational scalability—methods that add latency or centralize look-ups may weaken both reliability and privacy. Circumvention may occur not only by users but also through weak or misaligned intermediaries; distributing enforcement across independent layers limits large-scale bypass. In/accuracy of the method, false positives and negatives, and what users can do about it. Recourse and remedy, e.g. who is responsible and what happens when: the determination of age could be wrong; age-verification is inaccurate; no one adopts it and users don’t use it; people abuse it; companies abuse it; there is a breach; it can be circumvented.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">For all of these approaches, there are also a number of overarching issues that make them less desirable. For example, as noted above, many would require collection of precise location information to comply with jurisdiction-by-jurisdiction privacy laws or other requirements. Important to note that geolocating users remains an unsolved problem. Inaccurate geolocation means people will be unnecessarily excluded or have an incorrect set of laws applied to them. This problem is likely to get worse as IPv4 fragments further.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">These sorts of efforts would also create complex questions of how to obtain accurate age information from long-standing, existing users. Difficult questions also arise around how users can “age up” in platforms over time, retaking control of their accounts and data without oversight.<a href="#section-2-4" class="pilcrow">¶</a></p>
+<p id="section-2-5">Beyond these threshold issues, specific proposals for age gating or age verification may or may not be effective. We take effective to mean that they work for both those permitted and those restricted and that they are feasible, durable against circumvention, and accurate.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-6">Additionally, age gating naturally puts a barrier to entry on a given site. Publishers spend a lot of time optimising their sites for ease of use, and are now being asked to pay a third party to bounce away a lot of their customers - both legitimate and otherwise. As such the economic argument for publishers to ignore the law is strong, particularly for laws enacted in states where that publisher has no legal entity. Inevitably, in the often used example of pornography, there will be many more non-compliant sites than compliant sites, and these non-compliant sites are likely to be non-compliant in other ways - eg effectively age gating their content creators.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<div id="age-credentials">
+<section id="section-2.1">
+        <h3 id="name-age-credentials">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-age-credentials" class="section-name selfRef">Age credentials</a>
+        </h3>
+<p id="section-2.1-1">The State issues the credentials that are “ground truth,” however none provide age as the singular datum, thereby disclosing more data about the user than is specific to the mandate to verify age. Examples of the provisioning of credentials include: Issuance of a birth certificate; Issuance of a passport; Teens: Issuance of a driver’s licence (though only in the US would this be for a u18); Issuance of a social insurance number / SSN / generic international name (no birthdate).<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Other hard documents that risk being less accurate include credit card (no birthdate but demonstrates banked eligibility) or student ID (not standardized, often no birthdate but gives approximation through education level).<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-3">Even in digital form, such as national eID or mobile driving-licence systems, these credentials expose more information than necessary.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="age-verification">
+<section id="section-2.2">
+        <h3 id="name-age-verification">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-age-verification" class="section-name selfRef">Age verification</a>
+        </h3>
+<p id="section-2.2-1">Age verification is performed when a guardian, the service or third party has direct, verified knowledge of the credential and assures a service of age. Hard document review would require the disclosure of documents containing a wide variety of sensitive information. This information would not be limited to a users’ age and would include data not necessary to determine whether or not a user should be permitted to use a social media platform (e.g., address, credit card number, etc.). Requiring such disclosures of all users would create substantial security and privacy concerns (e.g., risk of data breaches, exposure of additional personal information to platforms themselves).<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2-2">For credentials both physical and digital, unless they are coupled with selective-disclosure or verifiable zero-knowledge proof (ZKP) techniques. Using intermediaries at the device, service, or network layer to handle only minimal attributes (“over 16,” “over 18”) can preserve regulatory trust while limiting personal-data exposure. Verification frameworks could also rely on distributed attestations or policy-based tokens issued by trusted intermediaries, enabling services to confirm age eligibility without persistent identifiers or central repositories.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.2-3">Moreover, determined users may still falsify credentials or exploit systemic workarounds, undermining the effectiveness of these measures. Minors and adults alike may migrate to other extra jurisdictional platforms for comparable features rather than share the credentials required to clear a higher bar for age verification.<a href="#section-2.2-3" class="pilcrow">¶</a></p>
+<p id="section-2.2-4">Considerations for various intermediaries of age include the following.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
+<p id="section-2.2-5">A guardian who is accountable for the child assures the child’s age. This can be limiting for those with nontraditional family structures, wards of the state, and also assumes guardianship duties are always performed in the best interest of the child.<a href="#section-2.2-5" class="pilcrow">¶</a></p>
+<p id="section-2.2-6">A jurisdiction or a governmental agency to be the arbiter of whether a citizen or resident would be allowed to have access to the internet or access specific websites and services. This would have both process and political consequences.<a href="#section-2.2-6" class="pilcrow">¶</a></p>
+<p id="section-2.2-7">KYC (know-your-customer laws in countries that define certain industries as sensitive, such as banks, telecoms, etc) could theoretically be extended to any industry including social media, education platforms or blogging websites. However, doing so would blur the line between financial compliance and social regulation, embedding surveillance logics into general internet use. It could also make access to general-use and basic communication services contingent on a financial transaction framework, which not all internet-accessible platforms and services provide.<a href="#section-2.2-7" class="pilcrow">¶</a></p>
+<p id="section-2.2-8">Operating system–level verification shifts responsibility to device vendors and app ecosystems. While this potentially removes redundancy for users who already have a trust relationship with these intermediaries, this approach would concentrate power in a few private actors. The few OS or app ecosystems could incentivize and or be required to facilitate wider-spread age data requests from apps. They could also be in a position to determine or enforce access across wider categories of apps or content beyond characteristics such as age. Such centralization would raise competition, transparency, and accountability concerns, particularly where OS providers operate globally but respond to local regulatory pressures.<a href="#section-2.2-8" class="pilcrow">¶</a></p>
+<p id="section-2.2-9">Other third-party intermediaries or age verification services could offer modular, privacy-preserving verification as a service layer. Yet without strong oversight and interoperability standards, these actors could create new forms of data brokerage, fragmentation, or lock-in. Their economic incentives—to monetize verification or analytics—may conflict with users’ social and cultural rights, especially if pricing or access varies across regions.<a href="#section-2.2-9" class="pilcrow">¶</a></p>
+<p id="section-2.2-10">In many jurisdictions, regulated entities such as banks or telecommunications operators already perform age or identity checks under audited privacy frameworks. Extending such existing infrastructures with additional privacy-preserving layers could bridge regulatory and technical feasibility.<a href="#section-2.2-10" class="pilcrow">¶</a></p>
+<p id="section-2.2-11">Verifiers should be held accountable in systems where they are disclosed information (no matter how privacy preserving). Those presenting proofs should have a way to report or contest a request or determination made within these systems. Especially in the case of denial of access. Treating the user as the only potentially hostile party would ignore the power dynamics in jurisdictions where age verification is mandatory. Also, verifiers should be held to a standard of reporting and registration of their scope of collection. Especially in countries where age verification systems are being developed in tandem with digital ID systems.<a href="#section-2.2-11" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="age-assurance">
+<section id="section-2.3">
+        <h3 id="name-age-assurance">
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-age-assurance" class="section-name selfRef">Age assurance</a>
+        </h3>
+<p id="section-2.3-1">Age assurance is an umbrella term often used to describe the various methods whereby the user, a guardian, the service, third party, or age verification service assures the service of age to the direct, or verified knowledge of the credential to various degrees of confidence.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.3-2">Age assurance can be performed by any of the age verification intermediaries listed in the previous section.<a href="#section-2.3-2" class="pilcrow">¶</a></p>
+<p id="section-2.3-3">The user can self-attest, which is status quo for almost every service at this time.<a href="#section-2.3-3" class="pilcrow">¶</a></p>
+<p id="section-2.3-4">A guardian can attest and be a legal guarantor to their children like Facebook Messenger Kids. This mechanism also serves to ensure a user is in fact a child, and not an adult impersonating a child.<a href="#section-2.3-4" class="pilcrow">¶</a></p>
+<p id="section-2.3-5">Connecting new users to parents’ accounts, COPPA “requires those operators to obtain verifiable consent from the children's parents before collecting, using, or disclosing children's personal information” and under GDPR they must “obtain this consent from a parent and make reasonable efforts to verify the identity of that parent.” (Epic Games, Kids Web Services (KWS) at “Welcome to Kids Web Services,” <a href="https://dev.epicgames.com/docs/kids-web-services/welcome-to-kws">https://dev.epicgames.com/docs/kids-web-services/welcome-to-kws</a>).<a href="#section-2.3-5" class="pilcrow">¶</a></p>
+<p id="section-2.3-6">An additional concern is that this measure proliferates rather severely user data, risking feasibility. Rather than minimizing data not just about the child but for the parent, this requires all parents to first verify their age (invoke recursion analysis). Verifiable consent is then required in addition to verifying a parent-child relationship between users, all of which invoke hard document review.<a href="#section-2.3-6" class="pilcrow">¶</a></p>
+<p id="section-2.3-7">Non-state institutional or contract-bound intermediary like a court-appointed guardian, a school or an employer. The linking of undergraduate and professional emails as methods by which social media platforms could increase the accuracy of their age verification processes fall short because these are typically only given to individuals of undergraduate or professional age, eg o18. At the same time requiring an undergraduate or professional email is likely to exclude a substantial number of adults. Users aged 13-17 who have not begun attending undergraduate institutions or working in professional environment will be unable to create accounts on the platform as a result Additionally, users from lower-income backgrounds, homeschool settings, or international markets where educational institutions do not provide email addresses will be irrationally excluded. Such an arbitrary and discriminatory outcome would amount to an unreasonable limit on access.<a href="#section-2.3-7" class="pilcrow">¶</a></p>
+<p id="section-2.3-8">The service itself could perform age verification, age estimation or age assurance via the user directly or a third party, eg guardian.<a href="#section-2.3-8" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="age-estimation">
+<section id="section-2.4">
+        <h3 id="name-age-estimation">
+<a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-age-estimation" class="section-name selfRef">Age estimation</a>
+        </h3>
+<p id="section-2.4-1">Some examples of age estimation or inference of age have been proposed to use a variety of behavioural and context-specific signals, not all of which users explicitly opt in to. There are general concerns that the use of user data for the purposes of age estimation can contravene data privacy frameworks that limit data usage to specific consent structures. Nonetheless we elaborate a couple of mechanisms here:<a href="#section-2.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.4-2">The behaviour of a user on a platform, including who they are friends with or what kind of content they engage in can provide some clues as to their age. However this data is limited to what service providers know about these users and is not as accurate for younger users since statistically there are fewer ways for the platform to know that its estimation is accurate.<a href="#section-2.4-2" class="pilcrow">¶</a></p>
+<p id="section-2.4-3">Biometric signals are considered age estimation rather than age assurance or verification because it’s not rooted in authoritative or ground truth. Biometric methods such as image or video facial scans are accompanied by a variety of flaws that prevent it from being a reasonable alternative. First, facial analysis technology is notoriously unreliable in estimating age, especially for teenagers, whose facial features change rapidly and vary widely. (Ngan, M. and P. Grother, Face Recognition Vendor Test (FRVT) Performance of Automated Age Estimation Algorithms, NIST Interagency Report 7995, Nat’l Inst. of Standards &amp; Tech. (Mar. 20, 2014), https://nvlpubs.nist.gov/nistpubs/ir/2014/NIST.IR.7995.pdf) These tools can easily misclassify users depending on lighting, ethnicity, or facial expression. (Ganel, T., Sofer, C., &amp; Goodale, M. A. (2022). Biases in human perception of facial age are present and more exaggerated in current AI technology. Scientific reports, 12(1), 22519. <a href="https://doi.org/10.1038/s41598-022-27009-w">https://doi.org/10.1038/s41598-022-27009-w</a>)<a href="#section-2.4-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="other">
+<section id="section-2.5">
+        <h3 id="name-other">
+<a href="#section-2.5" class="section-number selfRef">2.5. </a><a href="#name-other" class="section-name selfRef">Other</a>
+        </h3>
+<p id="section-2.5-1">There are perhaps other more indirect ways of achieving age appropriate use of online content and services. Perhaps broadly we could refer to these as market and content-based solutions.<a href="#section-2.5-1" class="pilcrow">¶</a></p>
+<p id="section-2.5-2">Market: The prohibition of advertising, marketing, or subscriptions targeting children under the allowed age supports harm reduction while preserving privacy by disincentivizing children from joining platforms. This is realizable through regulatory action and addresses risk without compelling platforms to surveil or profile young– or any– users by disallowing the acceptance of payments for advertisements to children under the allowed ages.<a href="#section-2.5-2" class="pilcrow">¶</a></p>
+<p id="section-2.5-3">At the infrastructure level, network or payment intermediaries can also enforce such prohibitions through category-based or transaction-type filtering that does not require user profiling. These methods are enforceable through consumer protections and guardrails that exist in the financial sector.<a href="#section-2.5-3" class="pilcrow">¶</a></p>
+<p id="section-2.5-4">Rather than continuous geolocation, minimal-exposure signaling between networks and services could meet jurisdictional needs without tracking individuals. Networks maintain awareness of user location and applicable jurisdiction through routing, addressing, and service-delivery functions. This contextual knowledge could support privacy-preserving determination of the user-to-jurisdiction link, avoiding the need for continuous device-level geolocation. However there are implications for enforcement at the network level given the broad surface available for network level censorship capability on a per-user basis.<a href="#section-2.5-4" class="pilcrow">¶</a></p>
+<p id="section-2.5-5">Content moderation more broadly is the commitment of services and platforms to ensure online experiences are fit for purpose, given the intended user base. For example certain k-12 educational websites with user generated content are certainly engaged in some strong degree of content moderation because the platform is for learning in schools, and not, say, popular culture or entertainment.<a href="#section-2.5-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="enforcement">
+<section id="section-3">
+      <h2 id="name-enforcement">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-enforcement" class="section-name selfRef">Enforcement</a>
+      </h2>
+<p id="section-3-1">Once age has been determined to a satisfactory degree, it’s important to interrogate the means by which content or a service is either accessible or not. This happens solely at the service level. In this section we expand on what happens once the service has obtained age assurance, or age verification if it has been party to hard documentation directly.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">It is generally important to note that the very definition of “adult content” is not universal. Material that one jurisdiction or culture classifies as adult—such as partial nudity, depictions of smoking, or the use of firearms—may be considered artistic, commercial, or sporting content elsewhere. As a result, even a compliant service might not be aware that some of its material would qualify as adult under another legal framework. This variability underscores the need for proportional, interoperable signaling systems rather than rigid or global classifications.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">Platforms and services enforce by limiting access or visibility of certain categories of content based on the verified age attribute of a user or account. This can take several forms: hard blocks on sign-up, “shadow” restrictions such as hiding posts from underage accounts, or algorithmic filtering that reduces exposure to sensitive material. Enforcement at the service level can also include requiring a logged-in session tied to an attested age, but this raises issues around traceability, persistent identifiers, and the erosion of anonymous access to lawful content.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">Devices enforce by interpreting or acting on signals from applications, browsers, or operating systems to restrict or permit access. For instance, parental-control settings or OS-level content ratings can automatically block apps or sites flagged as adult. Device-level enforcement is often marketed as a privacy-preserving solution because it happens locally, but it can also centralize control in a few proprietary ecosystems and create dependency on vendor-defined “age ratings.” This can entrench cultural biases or commercial interests rather than reflect nuanced or localized standards.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-5">Some considerations for networks that enforce age gating may be instructive for any system design as well, though content moderation at this lower network layer tends to be objectionable [[RFC 9505]]:<a href="#section-3-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-6.1">
+          <p id="section-3-6.1.1">There exist internet standards for any service to signal to the user that it is adult-only. Any device, including web browsers, can elect to confirm this signal. It would be recommended to require all services that disallow users under a specific age to use this standard to use the “restricted to adults” label and that the OS, browser and app levels heed this signal. (RTA Label, available at <a href="https://www.rtalabel.org/">https://www.rtalabel.org/</a>) This should also be paired with self-attestation methods. Enforced by an ISP would be network level censorship.<a href="#section-3-6.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-6.2">
+          <p id="section-3-6.2.1">Similar signaling could extend to DNS or resolver functions, where privacy-preserving flags indicate that a domain hosts age-restricted material. [[cite <a href="http://blog.cloudflare.com/introducing-1-1-1-1-for-families/">http://blog.cloudflare.com/introducing-1-1-1-1-for-families/</a>]] Such information can guide optional filtering at the user or guardian’s request without content inspection or identity disclosure.<a href="#section-3-6.2.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-3-7">There is a view that common, interoperable approaches across service, device, and network layers could lower compliance costs and align incentives for safer adoption. However this lowering of barriers to implementation would be considered a negative if age-gating is considered a form of disenfranchisement and censorship, or if the age-gating capabilities are applied to additional attributes of end users.<a href="#section-3-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="types-of-web-based-platforms-and-internet-services">
+<section id="section-4">
+      <h2 id="name-types-of-web-based-platform">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-types-of-web-based-platform" class="section-name selfRef">Types of web-based platforms and internet services</a>
+      </h2>
+<p id="section-4-1">We have described a range of methods for age gating, however we must acknowledge that not all content, platforms, and services need to take the same approach. Enforcement need not be uniform across all Internet services. Core infrastructure and access networks may implement category-level controls; devices and browsers can interpret standardized labels; and services can apply context-specific age checks. Aligning these layers reduces redundancy and minimizes risk.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">It is our hope that in this section we try to describe the type of platforms and services such that “no age assurance”, “self-attestation” and “hard document age verification” can vary in their approach, and also vary across age groups as well: under 13, teens, over 18/adult.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">Core Internet infrastructure — Physical connectivity, routing, DNS, and encryption layers. These should remain neutral and privacy-preserving, but can optionally support privacy-preserving signaling (e.g., domain-category metadata or parental-policy tokens) chosen by users or guardians.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">Governmental and intergovernmental services — Sites such as taxation, immigration, or public-sector portals (e.g., <a href="http://irs.gov">irs.gov</a>). These normally require verified identity and age by design and operate under statutory data-protection frameworks.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">Essential social, cultural, and economic rights (ESCR) services — Platforms providing access to banking, education, news, or health information. These typically must be broadly accessible regardless of age and should avoid unnecessary barriers.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">General-purpose platforms — Social-media, messaging, gaming, or e-commerce services serving mixed audiences. These are best suited to layered age-assurance approaches combining user, guardian, and optional network-assisted controls, depending on jurisdiction.<a href="#section-4-6" class="pilcrow">¶</a></p>
+<p id="section-4-7">Context-dependent or borderline content — Material whose classification varies by culture or law (e.g., artistic nudity, tobacco, weapons). Here, enforcement may rely on localized signaling or policy mapping at device or network level rather than global content bans.<a href="#section-4-7" class="pilcrow">¶</a></p>
+<p id="section-4-8">Adult-only services — Platforms distributing explicit sexual, gambling, or similar content (e.g., pornhub). These require high-assurance age verification but should implement it with minimal data disclosure and interoperable signaling for users and networks.<a href="#section-4-8" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="types-of-platforms-and-services">
+<section id="section-5">
+      <h2 id="name-types-of-platforms-and-serv">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-types-of-platforms-and-serv" class="section-name selfRef">Types of Platforms and Services</a>
+      </h2>
+<p id="section-5-1">While age assurance can apply across many kinds of online services, the majority of user exposure and regulatory debate concerns general-use platforms—social-media, messaging, gaming, and app-distribution ecosystems that mix adult and minor audiences. These platforms collect large volumes of user data and operate globally, so privacy, feasibility, and jurisdictional diversity become the most acute design challenges.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">In some jurisdictions, regulations already mandate the blocking or restriction of specific platforms for users below a certain age—for instance, national orders prohibiting access to social-media services such as TikTok for minors. Such measures highlight both the policy urgency and the architectural complexity of enforcing age-based restrictions at scale, since these platforms often serve mixed audiences and operate across borders.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">General-use platforms can be further grouped according to how users interact and how moderation and access controls are applied:<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">• Social-interaction platforms (e.g., social networks, video-sharing, live streaming) — rely heavily on user-generated content and recommendation algorithms; enforcement usually combines self-attestation, parental tools, and service-level moderation.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-5">• Communication platforms (e.g., messaging, voice, forums) — involve private or semi-private exchanges where content is not always visible to the provider; here, age assurance must operate without content inspection, typically through account-level or device-level signaling.<a href="#section-5-5" class="pilcrow">¶</a></p>
+<p id="section-5-6">• Gaming and virtual-world platforms — include interactive environments with in-app purchases and chat; suitable controls combine guardian consent, payment-based age hints, and optional network-assisted filtering for external links.<a href="#section-5-6" class="pilcrow">¶</a></p>
+<p id="section-5-7">• App stores and distribution platforms — act as aggregation points enforcing developer compliance and can apply uniform age labels or assurance tokens to downstream services.<a href="#section-5-7" class="pilcrow">¶</a></p>
+<p id="section-5-8">Beyond these general-use categories, several specialized domains require tailored approaches:<a href="#section-5-8" class="pilcrow">¶</a></p>
+<p id="section-5-9">• Adult-only or restricted-commerce services — high-assurance verification with minimal data disclosure.<a href="#section-5-9" class="pilcrow">¶</a></p>
+<p id="section-5-10">• Governmental and public-sector services — identity-bound by default within existing eID frameworks.<a href="#section-5-10" class="pilcrow">¶</a></p>
+<p id="section-5-11">• Essential-rights services (banking, health, news, education) — broad accessibility and minimal friction.<a href="#section-5-11" class="pilcrow">¶</a></p>
+<p id="section-5-12">• Core Internet infrastructure (DNS, routing, encryption) — privacy-preserving and neutral, supporting only optional signaling chosen by the user or guardian.<a href="#section-5-12" class="pilcrow">¶</a></p>
+<p id="section-5-13">Focusing the analysis on general-use platforms helps clarify where architectural guidance is most needed. Specialized or regulated sectors already have established compliance channels, whereas mixed-audience platforms face the hardest trade-offs between safety, usability, and privacy.<a href="#section-5-13" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="concluding-recommendations">
+<section id="section-6">
+      <h2 id="name-concluding-recommendations">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-concluding-recommendations" class="section-name selfRef">Concluding recommendations</a>
+      </h2>
+<ul class="normal">
+<li class="normal" id="section-6-1.1">
+          <p id="section-6-1.1.1">Reducing harm to children on the internet requires an incremental, all-hands approach and cannot be solved by age verification alone. A holistic approach would embrace privacy by design and data minimization principles that protect children as well as adults from platform overreach.<a href="#section-6-1.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-1.2">
+          <p id="section-6-1.2.1">If lawmakers are in a position to outlaw internet services for users of ages under 18 years old, they are in a position to define new credentialing systems that are fit for purpose rather than rely on hard documentation meant for operating automobiles, crossing national borders or social services entitlements.<a href="#section-6-1.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-1.3">
+          <p id="section-6-1.3.1">Introducing additional age-based signup requirements would risk harm to user privacy and free expression for all users of the web, not just to children, but especially to children.<a href="#section-6-1.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-1.4">
+          <p id="section-6-1.4.1">To date, jurisdictions around the world are considering various potential age-gating alternatives to mitigate potential safety risks to children without negatively impacting all social media users and without unduly compromising user privacy have reported evidence that advanced technical approaches to verify and assure age are currently infeasible or have significant downsides as compared to status quo approaches of self-reporting.<a href="#section-6-1.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-1.5">
+          <p id="section-6-1.5.1">Any mandate of age verification effectively regulates all users, rather than companies, to clear a compliance bar in which they must verify their age to the service to use an app. This approach does not address the central thrust of the problem statement, which seems to be that social media companies build platforms that are inclusive to children. Age assurance also regulates all users but has a lower bar and reduced friction for compliance making it a more inclusive choice overall.<a href="#section-6-1.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-1.6">
+          <p id="section-6-1.6.1">Content moderation of user generated content by platforms and services continues to be an established and effective way to ensure unlawful and disallowed content and behaviour is detected or reported and actioned with proper recourse and remedy mechanisms in the case of overreach.<a href="#section-6-1.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-1.7">
+          <p id="section-6-1.7.1">A more resilient approach may rely on a plurality of mechanisms operating at different layers of the Internet architecture—service, device, and network—each limited in scope and aligned with privacy-by-design principles. In this model, no single actor holds or processes all user information; rather, complementary methods (for example, self-attestation, trusted-service assurance, or privacy-preserving network-assisted filtering) can contribute to age-appropriate access control according to local regulation and user choice. Such diversity of methods can improve overall robustness and inclusiveness while reducing dependence on any single trust anchor. Contradicting data-protection principles like minimization means that if widely implemented without such safeguards, age-verification systems could still result in mass data collection on both adults and children, with far-reaching implications for user privacy and safety.<a href="#section-6-1.7.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-7">
+      <h2 id="name-security-considerations">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security considerations</a>
+      </h2>
+<p id="section-7-1">In general the cross-platform and over-the-wire exchange of information described in nearly all of the architectural choices above implicate security risks due to the complexity of the requirements, cooperation between several different parties and the expectation that this would be done at scale, for all users, not– perhaps naively assumed– just for youth.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">When security tools are considered services that need age-gating such as in proposals to not allow youth to use end-to-end encryption this puts them at great risk and would never be supported by security considerations. Nor would age-gating of encryption be possible without some kind of intervention akin to backdooring encryption.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">Hard document review – If instantiated, such measures would require the collection, processing, storage and securing of sensitive personal data from all users, including minors, which increases the risk of harm in the case of data breaches. (Privacy International, The Sustainable Development Goals, Identity, and Privacy: Does their implementation risk human rights? (Aug. 29, 2018), https://privacyinternational.org/long-read/2237/sustainable-development-goals-identity-and-privacy-does-their-implementation-risk) This processing and storage are vectors for mass and targeted surveillance by any State jurisdiction party to the UN Convention on Cybercrime.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">Guardian and parental controls – This approach leaves the responsibility for age verification to parents, which can be fraught in some of the most acute cases of child abuse. [[Lily Hay Newman, Apple Kills Its Plan to Scan Your Photos for CSAM. Here’s What’s Next, WIRED (Dec. 7, 2022), <a href="https://www.wired.com/story/apple-photo-scanning-csam-communication-safety-messages/">https://www.wired.com/story/apple-photo-scanning-csam-communication-safety-messages/</a>]] In short, outside the context of mandatory age verification, these mechanisms can be used as tools for abusive parental or guardian surveillance.<a href="#section-7-4" class="pilcrow">¶</a></p>
+<p id="section-7-5">If the surveillance power is given to the state instead, encouraging oversight by a potentially abusive regime is of real concern. Neither state nor parental control addresses in-person abuse of a child and technology can not solve that societal issue.<a href="#section-7-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="privacy-considerations">
+<section id="section-8">
+      <h2 id="name-privacy-considerations">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy considerations</a>
+      </h2>
+<p id="section-8-1">Risks previously mentioned fundamentally challenge data-minimization efforts and compliance with established data-protection frameworks such as the EU General Data Protection Regulation (GDPR), which requires that personal data be collected only for specific purposes and limited to what is strictly necessary for those purposes.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">General – Cross-platform tracking with methods that require all intermediary methods described above, spreading this information around rather than minimizing it.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3">In general, any mandatory age verification will technically enforce limitations of being anonymous online and the right to access resources on the web without being bound to a general or long term identification process over time, which have implications for human rights.[[cite https://undocs.org/A/HRC/2932]]<a href="#section-8-3" class="pilcrow">¶</a></p>
+<p id="section-8-4">With third-party verification – the providers involved notwithstanding, the centralized risk of data being resold or mishandled increases.<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-8-5">Guardian and parental controls – The main concern with these parental controls features is that they enable use but potentially, depending on how they are designed, surveilled use, which may harm children and teens by creating confusion about their privacy and autonomy. On the one hand they may feel a false sense of privacy and that their activities are insulated from the platform, and on the other hand they might self-censor out of concern for the oversight that the parental controls provide their caretakers. These proposals take a narrow view of parent-child relationships and fail to consider the harms as described briefly by CDT: “In particular, LGBTQ youth and children in abusive homes are especially vulnerable to injury and reprisals, including from their parents or guardians, and may inadvertently expose sensitive information about themselves or their friends to adults, with disastrous consequences.” [[cite CDT: Apple’s Changes to Messaging and Photo Services Threaten Users’ Security and Privacy, (Aug. 5, 2021), <a href="https://cdt.org/press/cdt-apples-changes-to-messaging-and-photo-services-threaten-users-security-and-privacy">https://cdt.org/press/cdt-apples-changes-to-messaging-and-photo-services-threaten-users-security-and-privacy</a>]]<a href="#section-8-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="human-rights-considerations">
+<section id="section-9">
+      <h2 id="name-human-rights-considerations">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-human-rights-considerations" class="section-name selfRef">Human rights considerations</a>
+      </h2>
+<p id="section-9-1">There is also significant agreement amongst the civil liberties and human rights communities that age verification poses more peril than the promise because of, “the ways in which they are often inaccurate; can be circumvented; present privacy and security risks; and may be entirely inaccessible to certain groups, including undocumented immigrants, unbanked individuals, people with disabilities, and others who either do not have access to government ids or who might be more commonly misidentified by biometric technology.” [[cite Ruane, Branum, Doty, Jain, CDT Files Amicus Brief in Free Speech Coalition v. Paxton, Challenging TX Age Verification Law, Center for Democracy and Technology (Sept. 23, 2024), <a href="https://cdt.org/insights/cdt-files-amicus-brief-in-free-speech-coalition-v-paxton-challenging-tx-age-verification-law/">https://cdt.org/insights/cdt-files-amicus-brief-in-free-speech-coalition-v-paxton-challenging-tx-age-verification-law/</a>]]<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-2">The Universal Declaration of Human Rights is fundamental to designing technical means of age-gating but also whether and how these means are implemented. [[RFC 8280]] Prior, we have addressed privacy in the previous section. Additionally are considerations for free expression and free association. Economic, Social and Cultural rights are also important to consider as these include the right to personhood eg hard documents issued by the state; but also how age-gating might impact a variety of aspects of life for young people in the digital age.<a href="#section-9-2" class="pilcrow">¶</a></p>
+<div id="free-expression">
+<section id="section-9.1">
+        <h3 id="name-free-expression">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-free-expression" class="section-name selfRef">Free expression</a>
+        </h3>
+<p id="section-9.1-1">Any content gating risks limiting lawful access to information, disproportionately affecting most marginalized people’s ability to engage in political, educational, and artistic discourse. Overbroad implementation risks chilling participation in online spaces that are essential for learning, advocacy, and identity formation, undermining Article 19 of the UDHR.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="free-association">
+<section id="section-9.2">
+        <h3 id="name-free-association">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-free-association" class="section-name selfRef">Free association</a>
+        </h3>
+<p id="section-9.2-1">Mandatory identity checks for access to online services can deter participation in communities and movements that rely on pseudonymity for safety—such as youth networks, LGBTQ+ forums, or activist groups. This threatens the rights to assembly and association under Articles 20 and 23 of the UDHR by forcing users to trade anonymity for access.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="social-rights">
+<section id="section-9.3">
+        <h3 id="name-social-rights">
+<a href="#section-9.3" class="section-number selfRef">9.3. </a><a href="#name-social-rights" class="section-name selfRef">Social Rights</a>
+        </h3>
+<p id="section-9.3-1">Right to social security and social protection — Systems may require digital identity or proof-of-age to access benefits, which can exclude those without ID or those in marginalized groups (ICESCR art. 9). Think about kids "in the system" or as "wards of the state" here.<a href="#section-9.3-1" class="pilcrow">¶</a></p>
+<p id="section-9.3-2">Right to work and just conditions — Young workers might face barriers if age-verification systems are used in hiring or platform work, e.g., gig apps that require invasive ID scans. Kids 14-16 and up can often work in most places in the world, where bossware and other measures are increasingly in place.<a href="#section-9.3-2" class="pilcrow">¶</a></p>
+<p id="section-9.3-3">Right to health — Age-gating can affect access to online sexual and reproductive health information, mental-health support forums, harm-reduction services, or LGBTQ+ youth resources.<a href="#section-9.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="cultural-rights">
+<section id="section-9.4">
+        <h3 id="name-cultural-rights">
+<a href="#section-9.4" class="section-number selfRef">9.4. </a><a href="#name-cultural-rights" class="section-name selfRef">Cultural Rights</a>
+        </h3>
+<p id="section-9.4-1">Right to participate in cultural life and access information — Content filters and strict age gates may overblock art, literature, or cultural expression, especially where sexuality or gender diversity is part of culture (ICESCR art. 15).<a href="#section-9.4-1" class="pilcrow">¶</a></p>
+<p id="section-9.4-2">Scientific progress and its benefits — Excessive identification hurdles can chill participation in online learning, open science communities, or software sharing.<a href="#section-9.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="economic-rights">
+<section id="section-9.5">
+        <h3 id="name-economic-rights">
+<a href="#section-9.5" class="section-number selfRef">9.5. </a><a href="#name-economic-rights" class="section-name selfRef">Economic Rights</a>
+        </h3>
+<p id="section-9.5-1">Right to education and vocational training — Age verification that requires credit cards, government IDs, or costly processes can exclude minors or low-income students from MOOCs or online courses (ICESCR art. 13).<a href="#section-9.5-1" class="pilcrow">¶</a></p>
+<p id="section-9.5-2">Right to enjoy the benefits of one’s own creative work — Young creators and small businesses can be locked out of platforms if compliance costs are high or verification is inaccessible. There are a lot of famous kids on the internet making a lot of money from sponsorships and ads and this should be democratized and equally accessible globally.<a href="#section-9.5-2" class="pilcrow">¶</a></p>
+<p id="section-9.5-3">Non-discrimination in economic life — Systems that assume everyone has a passport, bank account, or biometric record can indirectly discriminate against migrants, refugees, undocumented people, or low-income families.<a href="#section-9.5-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-10">
+      <h2 id="name-iana-considerations">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-10-1">This document has no IANA actions.<a href="#section-10-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-A">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-B">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Mallory Knodel</span></div>
+<div dir="auto" class="left"><span class="org">Social Web Foundation</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:mallory.knodel@nyu.edu" class="email">mallory.knodel@nyu.edu</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Gianpaolo Angelo Scalone</span></div>
+<div dir="auto" class="left"><span class="org">Vodafone Group</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:gianpaolo-angelo.scalone@vodafone.com" class="email">gianpaolo-angelo.scalone@vodafone.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Tom Newton</span></div>
+<div dir="auto" class="left"><span class="org">Qoria</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:tom.newton@qoria.com" class="email">tom.newton@qoria.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
