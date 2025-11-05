@@ -5,14 +5,14 @@
 Network Working Group                                          M. Knodel
 Internet-Draft                                     Social Web Foundation
 Intended status: Informational                             G. A. Scalone
-Expires: 7 May 2026                                       Vodafone Group
+Expires: 9 May 2026                                       Vodafone Group
                                                                T. Newton
                                                                    Qoria
-                                                         3 November 2025
+                                                         5 November 2025
 
 
                      Age Verification Architecture
-                  draft-todo-yourname-protocol-latest
+                      draft-knodel-age-arch-latest
 
 Abstract
 
@@ -28,7 +28,7 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    Status information for this document may be found at
-   https://datatracker.ietf.org/doc/draft-todo-yourname-protocol/.
+   https://datatracker.ietf.org/doc/draft-knodel-age-arch/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/mallory/draft-knodel-age-arch.
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 May 2026.
+   This Internet-Draft will expire on 9 May 2026.
 
 Copyright Notice
 
@@ -87,6 +87,7 @@ Table of Contents
      9.4.  Cultural Rights
      9.5.  Economic Rights
    10. IANA Considerations
+   11. Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -175,9 +176,7 @@ Table of Contents
 
    Language matters because it shapes how we think about these systems.
    "Assurance" is less official than "verification" and "estimation"
-   admits inherent imprecision. [[cite
-   https://www.eff.org/deeplinks/2025/10/age-verification-estimation-
-   assurance-oh-my-guide-terminology]]
+   admits inherent imprecision.  [EFF-Age-Terminology]
 
    *Age Verification* – Process of confirming a user’s age using an
    authoritative or verifiable source (e.g., government ID, credential,
@@ -949,6 +948,15 @@ Table of Contents
 10.  IANA Considerations
 
    This document has no IANA actions.
+
+11.  Informative References
+
+   [EFF-Age-Terminology]
+              Electronic Frontier Foundation (EFF), "Age Assurance,
+              Estimation, Verification—Oh My! A Guide to the
+              Terminology", October 2025,
+              <https://www.eff.org/deeplinks/2025/10/age-verification-
+              estimation-assurance-oh-my-guide-terminology>.
 
 Acknowledgments
 
