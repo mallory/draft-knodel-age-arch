@@ -38,6 +38,12 @@ author:
 normative:
 
 informative:
+  EFF-Age-Terminology:
+    title: "Age Assurance, Estimation, Verification—Oh My! A Guide to the Terminology"
+    author:
+      - org: Electronic Frontier Foundation (EFF)
+    date: 2025-10
+    target: https://www.eff.org/deeplinks/2025/10/age-verification-estimation-assurance-oh-my-guide-terminology
 
 ...
 
@@ -65,7 +71,7 @@ From an operational and architectural perspective, centralizing or repeatedly ex
 
 ## Terminology
 
-Language matters because it shapes how we think about these systems. "Assurance" is less official than "verification" and "estimation" admits inherent imprecision. \[\[cite https://www.eff.org/deeplinks/2025/10/age-verification-estimation-assurance-oh-my-guide-terminology\]\]
+Language matters because it shapes how we think about these systems. "Assurance" is less official than "verification" and "estimation" admits inherent imprecision. [EFF-Age-Terminology]
 
 **Age Verification** – Process of confirming a user’s age using an authoritative or verifiable source (e.g., government ID, credential, or trusted record).
 
