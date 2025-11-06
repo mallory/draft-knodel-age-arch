@@ -1,0 +1,116 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2025-11-06T01:06:15.409282+00:00",
+  "repo": "mallory/draft-knodel-age-arch",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOQOqL587VoHD3",
+      "title": "fix links in kramdown",
+      "url": "https://github.com/mallory/draft-knodel-age-arch/issues/1",
+      "state": "OPEN",
+      "author": "mallory",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The informative entry needs to be in the form\n\n```\n  UN:\n    target: https://www.un-ilibrary.org/content/books/9789213589779.\n    title: Digital Economy Report 2024.\n    author:\n     org: United Nations\n    date: 2024\n```\n\nAnd in the text you then use [UN] to invoke the reference.",
+      "createdAt": "2025-11-03T23:05:11Z",
+      "updatedAt": "2025-11-04T21:07:47Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOQOqL587VoHpb",
+      "title": "Consolidate two redundant sections",
+      "url": "https://github.com/mallory/draft-knodel-age-arch/issues/2",
+      "state": "OPEN",
+      "author": "mallory",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "flyingeng"
+      ],
+      "labels": [],
+      "body": "\"Types of web-based platforms and internet services\" and \"Types of Platforms and Services\" since they are mostly the same.",
+      "createdAt": "2025-11-03T23:05:59Z",
+      "updatedAt": "2025-11-04T21:01:17Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 3,
+      "id": "PR_kwDOQOqL586xu0eX",
+      "title": "Update draft-knodel-age-arch.md",
+      "url": "https://github.com/mallory/draft-knodel-age-arch/pull/3",
+      "state": "OPEN",
+      "author": "AwesomeAudrey",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Updated Citations",
+      "createdAt": "2025-11-05T19:55:09Z",
+      "updatedAt": "2025-11-05T19:55:09Z",
+      "baseRepository": "mallory/draft-knodel-age-arch",
+      "baseRefName": "main",
+      "baseRefOid": "88bbc84bf61b0f53bad8f543885fd9a4f9684eeb",
+      "headRepository": "mallory/draft-knodel-age-arch",
+      "headRefName": "AwesomeAudrey-patch-1",
+      "headRefOid": "09c8becbb9ee71925e7bd7fc58c7d1caacacbda2",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
