@@ -5,10 +5,10 @@
 Network Working Group                                          M. Knodel
 Internet-Draft                                     Social Web Foundation
 Intended status: Informational                             G. A. Scalone
-Expires: 9 May 2026                                       Vodafone Group
+Expires: 16 May 2026                                      Vodafone Group
                                                                T. Newton
                                                                    Qoria
-                                                         5 November 2025
+                                                        12 November 2025
 
 
                      Age Verification Architecture
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 May 2026.
+   This Internet-Draft will expire on 16 May 2026.
 
 Copyright Notice
 
@@ -75,19 +75,20 @@ Table of Contents
      2.4.  Age estimation
      2.5.  Other
    3.  Enforcement
-   4.  Types of web-based platforms and internet services
-   5.  Types of Platforms and Services
-   6.  Concluding recommendations
-   7.  Security considerations
-   8.  Privacy considerations
-   9.  Human rights considerations
-     9.1.  Free expression
-     9.2.  Free association
-     9.3.  Social Rights
-     9.4.  Cultural Rights
-     9.5.  Economic Rights
-   10. IANA Considerations
-   11. Informative References
+     3.1.  Types of Platforms and Services
+       3.1.1.  Summary of assurance levels and enforcement layers by
+               platform type
+   4.  Concluding recommendations
+   5.  Security considerations
+   6.  Privacy considerations
+   7.  Human rights considerations
+     7.1.  Free expression
+     7.2.  Free association
+     7.3.  Social Rights
+     7.4.  Cultural Rights
+     7.5.  Economic Rights
+   8.  IANA Considerations
+   9.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -598,118 +599,127 @@ Table of Contents
    age-gating capabilities are applied to additional attributes of end
    users.
 
-4.  Types of web-based platforms and internet services
+3.1.  Types of Platforms and Services
 
-   We have described a range of methods for age gating, however we must
-   acknowledge that not all content, platforms, and services need to
-   take the same approach.  Enforcement need not be uniform across all
-   Internet services.  Core infrastructure and access networks may
-   implement category-level controls; devices and browsers can interpret
-   standardized labels; and services can apply context-specific age
-   checks.  Aligning these layers reduces redundancy and minimizes risk.
+   Age-assurance mechanisms cannot be applied uniformly across the
+   Internet.  Different platforms handle user data, content, and legal
+   obligations in distinct ways, and therefore require proportionate,
+   context-aware approaches.  Enforcement can occur at several layers:
+   core infrastructure and access networks may provide category-level
+   controls; devices and browsers can interpret standardized labels; and
+   services can apply context-specific age checks.  Aligning these
+   layers reduces redundancy and risk while maintaining privacy.
 
-   It is our hope that in this section we try to describe the type of
-   platforms and services such that “no age assurance”, “self-
-   attestation” and “hard document age verification” can vary in their
-   approach, and also vary across age groups as well: under 13, teens,
-   over 18/adult.
-
-   Core Internet infrastructure — Physical connectivity, routing, DNS,
-   and encryption layers.  These should remain neutral and privacy-
-   preserving, but can optionally support privacy-preserving signaling
-   (e.g., domain-category metadata or parental-policy tokens) chosen by
-   users or guardians.
-
-   Governmental and intergovernmental services — Sites such as taxation,
-   immigration, or public-sector portals (e.g., irs.gov
-   (http://irs.gov)).  These normally require verified identity and age
-   by design and operate under statutory data-protection frameworks.
-
-   Essential social, cultural, and economic rights (ESCR) services —
-   Platforms providing access to banking, education, news, or health
-   information.  These typically must be broadly accessible regardless
-   of age and should avoid unnecessary barriers.
-
-   General-purpose platforms — Social-media, messaging, gaming, or
-   e-commerce services serving mixed audiences.  These are best suited
-   to layered age-assurance approaches combining user, guardian, and
-   optional network-assisted controls, depending on jurisdiction.
-
-   Context-dependent or borderline content — Material whose
-   classification varies by culture or law (e.g., artistic nudity,
-   tobacco, weapons).  Here, enforcement may rely on localized signaling
-   or policy mapping at device or network level rather than global
-   content bans.
-
-   Adult-only services — Platforms distributing explicit sexual,
-   gambling, or similar content (e.g., pornhub).  These require high-
-   assurance age verification but should implement it with minimal data
-   disclosure and interoperable signaling for users and networks.
-
-5.  Types of Platforms and Services
-
-   While age assurance can apply across many kinds of online services,
-   the majority of user exposure and regulatory debate concerns general-
-   use platforms—social-media, messaging, gaming, and app-distribution
+   The most visible and contested area is that of *general-use
+   platforms*—social-media, messaging, gaming, and app-distribution
    ecosystems that mix adult and minor audiences.  These platforms
-   collect large volumes of user data and operate globally, so privacy,
-   feasibility, and jurisdictional diversity become the most acute
-   design challenges.
-
-   In some jurisdictions, regulations already mandate the blocking or
-   restriction of specific platforms for users below a certain age—for
-   instance, national orders prohibiting access to social-media services
+   collect large volumes of user data and operate globally, making
+   privacy, feasibility, and jurisdictional diversity critical design
+   challenges.  In some jurisdictions, regulations already mandate the
+   blocking or restriction of specific platforms for under-age users—for
+   example, national orders prohibiting access to social-media services
    such as TikTok for minors.  Such measures highlight both the policy
    urgency and the architectural complexity of enforcing age-based
-   restrictions at scale, since these platforms often serve mixed
-   audiences and operate across borders.
+   restrictions at scale.
 
-   General-use platforms can be further grouped according to how users
-   interact and how moderation and access controls are applied:
+   *General-use platforms* can be grouped by how users interact and how
+   moderation and access controls are applied: - *Social-interaction
+   platforms* (e.g., video-sharing, live streaming) — rely heavily on
+   user-generated content and recommendation algorithms; enforcement
+   combines self-attestation, parental tools, and service-level
+   moderation. - *Communication platforms* (e.g., messaging, forums) —
+   enable private or semi-private exchanges; assurance must function
+   without content inspection, typically through account-level or
+   device-level signaling. - *Gaming and virtual-world platforms* —
+   include in-app purchases and chat; controls combine guardian consent,
+   payment-based age hints, and optional network-assisted filtering for
+   external links. - *App stores and distribution platforms* — act as
+   aggregation points that enforce developer compliance and propagate
+   uniform age labels or assurance tokens to downstream services.
 
-   • Social-interaction platforms (e.g., social networks, video-sharing,
-   live streaming) — rely heavily on user-generated content and
-   recommendation algorithms; enforcement usually combines self-
-   attestation, parental tools, and service-level moderation.
+   Beyond these mixed-audience environments, several *specialized
+   domains* require tailored approaches: - *Adult-only or restricted-
+   commerce services* — need high-assurance verification with minimal
+   data disclosure and interoperable signaling. - *Governmental and
+   public-sector services* — are identity-bound by default within
+   existing eID or authentication frameworks. - *Essential-rights
+   services* (banking, health, education, news) — must remain broadly
+   accessible and minimize friction. - *Core Internet infrastructure*
+   (connectivity, routing, DNS, encryption) — should stay neutral and
+   privacy-preserving, supporting only optional, user- or guardian-
+   selected signaling. - *Context-dependent or borderline material* —
+   content such as artistic nudity, tobacco, or weapons varies by
+   culture and law; enforcement should rely on localized policy mapping
+   rather than global content bans.
 
-   • Communication platforms (e.g., messaging, voice, forums) — involve
-   private or semi-private exchanges where content is not always visible
-   to the provider; here, age assurance must operate without content
-   inspection, typically through account-level or device-level
-   signaling.
+3.1.1.  Summary of assurance levels and enforcement layers by platform
+        type
 
-   • Gaming and virtual-world platforms — include interactive
-   environments with in-app purchases and chat; suitable controls
-   combine guardian consent, payment-based age hints, and optional
-   network-assisted filtering for external links.
+   +===================+================+===========+==================+
+   |Platform / Service |Typical         |Primary    |Notes             |
+   |Type               |Assurance Level |Enforcement|                  |
+   |                   |                |Layer      |                  |
+   +===================+================+===========+==================+
+   |*Core Internet     |None or optional|Network /  |Remains neutral;  |
+   |infrastructure*    |self-attestation|device     |may support user- |
+   |(connectivity, DNS,|                |           |selected, privacy-|
+   |encryption)        |                |           |preserving        |
+   |                   |                |           |signaling.        |
+   +-------------------+----------------+-----------+------------------+
+   |*Governmental &    |Verified        |Service /  |Age linked to     |
+   |public-sector      |identity (strong|eID        |legal identity    |
+   |services*          |assurance)      |framework  |under statutory   |
+   |                   |                |           |controls.         |
+   +-------------------+----------------+-----------+------------------+
+   |*Essential-rights  |Minimal         |Service /  |Broad             |
+   |services* (banking,|assurance or    |device     |accessibility     |
+   |health, education, |self-attestation|           |required; avoid   |
+   |news)              |                |           |discrimination or |
+   |                   |                |           |exclusion.        |
+   +-------------------+----------------+-----------+------------------+
+   |*General-use:      |Self-attestation|Service /  |User-generated    |
+   |social-interaction |+ parental /    |device     |content; mixed    |
+   |platforms*         |service         |           |audiences.        |
+   |                   |moderation      |           |                  |
+   +-------------------+----------------+-----------+------------------+
+   |*General-use:      |Account- or     |Device /   |Private exchanges;|
+   |communication      |device-level    |service    |no content        |
+   |platforms*         |assurance       |           |inspection.       |
+   +-------------------+----------------+-----------+------------------+
+   |*General-use:      |Guardian consent|Service /  |Includes in-app   |
+   |gaming & virtual-  |+ contextual    |device /   |purchases and     |
+   |world platforms*   |assurance       |network    |chat; external-   |
+   |                   |                |           |link filtering    |
+   |                   |                |           |possible.         |
+   +-------------------+----------------+-----------+------------------+
+   |*General-use: app  |Developer /     |Service    |Aggregation point |
+   |stores /           |publisher age   |           |enforcing         |
+   |distribution*      |labels          |           |consistent age    |
+   |                   |                |           |metadata.         |
+   +-------------------+----------------+-----------+------------------+
+   |*Adult-only or     |High-assurance  |Service /  |Minimal data      |
+   |restricted-commerce|verification    |device     |disclosure;       |
+   |services*          |(document /     |           |interoperable     |
+   |                   |token-based)    |           |signaling to      |
+   |                   |                |           |networks.         |
+   +-------------------+----------------+-----------+------------------+
+   |*Context-dependent |Variable;       |Device /   |Classification    |
+   |or borderline      |localized policy|network /  |differs across    |
+   |content*           |mapping         |service    |jurisdictions     |
+   |                   |                |           |(e.g., nudity,    |
+   |                   |                |           |tobacco, weapons).|
+   +-------------------+----------------+-----------+------------------+
 
-   • App stores and distribution platforms — act as aggregation points
-   enforcing developer compliance and can apply uniform age labels or
-   assurance tokens to downstream services.
+                                  Table 1
 
-   Beyond these general-use categories, several specialized domains
-   require tailored approaches:
+   Categorizing platforms in this way clarifies that age-assurance
+   methods—ranging from no assurance to self-attestation to high-
+   assurance verification—must vary by context and by age group.  A
+   layered, proportionate framework enables compliance and safety
+   objectives to be met without excessive data collection or centralized
+   control.
 
-   • Adult-only or restricted-commerce services — high-assurance
-   verification with minimal data disclosure.
-
-   • Governmental and public-sector services — identity-bound by default
-   within existing eID frameworks.
-
-   • Essential-rights services (banking, health, news, education) —
-   broad accessibility and minimal friction.
-
-   • Core Internet infrastructure (DNS, routing, encryption) — privacy-
-   preserving and neutral, supporting only optional signaling chosen by
-   the user or guardian.
-
-   Focusing the analysis on general-use platforms helps clarify where
-   architectural guidance is most needed.  Specialized or regulated
-   sectors already have established compliance channels, whereas mixed-
-   audience platforms face the hardest trade-offs between safety,
-   usability, and privacy.
-
-6.  Concluding recommendations
+4.  Concluding recommendations
 
    *  Reducing harm to children on the internet requires an incremental,
       all-hands approach and cannot be solved by age verification alone.
@@ -767,7 +777,7 @@ Table of Contents
       children, with far-reaching implications for user privacy and
       safety.
 
-7.  Security considerations
+5.  Security considerations
 
    In general the cross-platform and over-the-wire exchange of
    information described in nearly all of the architectural choices
@@ -810,7 +820,7 @@ Table of Contents
    Neither state nor parental control addresses in-person abuse of a
    child and technology can not solve that societal issue.
 
-8.  Privacy considerations
+6.  Privacy considerations
 
    Risks previously mentioned fundamentally challenge data-minimization
    efforts and compliance with established data-protection frameworks
@@ -852,7 +862,7 @@ Table of Contents
    (https://cdt.org/press/cdt-apples-changes-to-messaging-and-photo-
    services-threaten-users-security-and-privacy)]]
 
-9.  Human rights considerations
+7.  Human rights considerations
 
    There is also significant agreement amongst the civil liberties and
    human rights communities that age verification poses more peril than
@@ -880,7 +890,7 @@ Table of Contents
    gating might impact a variety of aspects of life for young people in
    the digital age.
 
-9.1.  Free expression
+7.1.  Free expression
 
    Any content gating risks limiting lawful access to information,
    disproportionately affecting most marginalized people’s ability to
@@ -889,7 +899,7 @@ Table of Contents
    essential for learning, advocacy, and identity formation, undermining
    Article 19 of the UDHR.
 
-9.2.  Free association
+7.2.  Free association
 
    Mandatory identity checks for access to online services can deter
    participation in communities and movements that rely on pseudonymity
@@ -897,7 +907,7 @@ Table of Contents
    This threatens the rights to assembly and association under Articles
    20 and 23 of the UDHR by forcing users to trade anonymity for access.
 
-9.3.  Social Rights
+7.3.  Social Rights
 
    Right to social security and social protection — Systems may require
    digital identity or proof-of-age to access benefits, which can
@@ -915,7 +925,7 @@ Table of Contents
    reproductive health information, mental-health support forums, harm-
    reduction services, or LGBTQ+ youth resources.
 
-9.4.  Cultural Rights
+7.4.  Cultural Rights
 
    Right to participate in cultural life and access information —
    Content filters and strict age gates may overblock art, literature,
@@ -926,7 +936,7 @@ Table of Contents
    hurdles can chill participation in online learning, open science
    communities, or software sharing.
 
-9.5.  Economic Rights
+7.5.  Economic Rights
 
    Right to education and vocational training — Age verification that
    requires credit cards, government IDs, or costly processes can
@@ -945,11 +955,11 @@ Table of Contents
    discriminate against migrants, refugees, undocumented people, or low-
    income families.
 
-10.  IANA Considerations
+8.  IANA Considerations
 
    This document has no IANA actions.
 
-11.  Informative References
+9.  Informative References
 
    [EFF-Age-Terminology]
               Electronic Frontier Foundation (EFF), "Age Assurance,
