@@ -206,51 +206,41 @@ Some considerations for networks that enforce age gating may be instructive for 
 
 There is a view that common, interoperable approaches across service, device, and network layers could lower compliance costs and align incentives for safer adoption. However this lowering of barriers to implementation would be considered a negative if age-gating is considered a form of disenfranchisement and censorship, or if the age-gating capabilities are applied to additional attributes of end users.
 
-# Types of web-based platforms and internet services
+## Types of Platforms and Services
 
-We have described a range of methods for age gating, however we must acknowledge that not all content, platforms, and services need to take the same approach. Enforcement need not be uniform across all Internet services. Core infrastructure and access networks may implement category-level controls; devices and browsers can interpret standardized labels; and services can apply context-specific age checks. Aligning these layers reduces redundancy and minimizes risk.
+Age-assurance mechanisms cannot be applied uniformly across the Internet. Different platforms handle user data, content, and legal obligations in distinct ways, and therefore require proportionate, context-aware approaches. Enforcement can occur at several layers: core infrastructure and access networks may provide category-level controls; devices and browsers can interpret standardized labels; and services can apply context-specific age checks. Aligning these layers reduces redundancy and risk while maintaining privacy.
 
-It is our hope that in this section we try to describe the type of platforms and services such that “no age assurance”, “self-attestation” and “hard document age verification” can vary in their approach, and also vary across age groups as well: under 13, teens, over 18/adult.
+The most visible and contested area is that of **general-use platforms**—social-media, messaging, gaming, and app-distribution ecosystems that mix adult and minor audiences. These platforms collect large volumes of user data and operate globally, making privacy, feasibility, and jurisdictional diversity critical design challenges. In some jurisdictions, regulations already mandate the blocking or restriction of specific platforms for under-age users—for example, national orders prohibiting access to social-media services such as TikTok for minors. Such measures highlight both the policy urgency and the architectural complexity of enforcing age-based restrictions at scale.
 
-Core Internet infrastructure — Physical connectivity, routing, DNS, and encryption layers. These should remain neutral and privacy-preserving, but can optionally support privacy-preserving signaling (e.g., domain-category metadata or parental-policy tokens) chosen by users or guardians.
+**General-use platforms** can be grouped by how users interact and how moderation and access controls are applied:
+- **Social-interaction platforms** (e.g., video-sharing, live streaming) — rely heavily on user-generated content and recommendation algorithms; enforcement combines self-attestation, parental tools, and service-level moderation.
+- **Communication platforms** (e.g., messaging, forums) — enable private or semi-private exchanges; assurance must function without content inspection, typically through account-level or device-level signaling.
+- **Gaming and virtual-world platforms** — include in-app purchases and chat; controls combine guardian consent, payment-based age hints, and optional network-assisted filtering for external links.
+- **App stores and distribution platforms** — act as aggregation points that enforce developer compliance and propagate uniform age labels or assurance tokens to downstream services.
 
-Governmental and intergovernmental services — Sites such as taxation, immigration, or public-sector portals (e.g., [irs.gov](http://irs.gov)). These normally require verified identity and age by design and operate under statutory data-protection frameworks.
+Beyond these mixed-audience environments, several **specialized domains** require tailored approaches:
+- **Adult-only or restricted-commerce services** — need high-assurance verification with minimal data disclosure and interoperable signaling.
+- **Governmental and public-sector services** — are identity-bound by default within existing eID or authentication frameworks.
+- **Essential-rights services** (banking, health, education, news) — must remain broadly accessible and minimize friction.
+- **Core Internet infrastructure** (connectivity, routing, DNS, encryption) — should stay neutral and privacy-preserving, supporting only optional, user- or guardian-selected signaling.
+- **Context-dependent or borderline material** — content such as artistic nudity, tobacco, or weapons varies by culture and law; enforcement should rely on localized policy mapping rather than global content bans.
 
-Essential social, cultural, and economic rights (ESCR) services — Platforms providing access to banking, education, news, or health information. These typically must be broadly accessible regardless of age and should avoid unnecessary barriers.
+#### Summary of assurance levels and enforcement layers by platform type {#assurance-summary-table}
 
-General-purpose platforms — Social-media, messaging, gaming, or e-commerce services serving mixed audiences. These are best suited to layered age-assurance approaches combining user, guardian, and optional network-assisted controls, depending on jurisdiction.
+| Platform / Service Type | Typical Assurance Level | Primary Enforcement Layer | Notes |
+|---|---|---|---|
+| **Core Internet infrastructure** (connectivity, DNS, encryption) | None or optional self-attestation | Network / device | Remains neutral; may support user-selected, privacy-preserving signaling. |
+| **Governmental & public-sector services** | Verified identity (strong assurance) | Service / eID framework | Age linked to legal identity under statutory controls. |
+| **Essential-rights services** (banking, health, education, news) | Minimal assurance or self-attestation | Service / device | Broad accessibility required; avoid discrimination or exclusion. |
+| **General-use: social-interaction platforms** | Self-attestation + parental / service moderation | Service / device | User-generated content; mixed audiences. |
+| **General-use: communication platforms** | Account- or device-level assurance | Device / service | Private exchanges; no content inspection. |
+| **General-use: gaming & virtual-world platforms** | Guardian consent + contextual assurance | Service / device / network | Includes in-app purchases and chat; external-link filtering possible. |
+| **General-use: app stores / distribution** | Developer / publisher age labels | Service | Aggregation point enforcing consistent age metadata. |
+| **Adult-only or restricted-commerce services** | High-assurance verification (document / token-based) | Service / device | Minimal data disclosure; interoperable signaling to networks. |
+| **Context-dependent or borderline content** | Variable; localized policy mapping | Device / network / service | Classification differs across jurisdictions (e.g., nudity, tobacco, weapons). |
 
-Context-dependent or borderline content — Material whose classification varies by culture or law (e.g., artistic nudity, tobacco, weapons). Here, enforcement may rely on localized signaling or policy mapping at device or network level rather than global content bans.
+Categorizing platforms in this way clarifies that age-assurance methods—ranging from no assurance to self-attestation to high-assurance verification—must vary by context and by age group. A layered, proportionate framework enables compliance and safety objectives to be met without excessive data collection or centralized control.
 
-Adult-only services — Platforms distributing explicit sexual, gambling, or similar content (e.g., pornhub). These require high-assurance age verification but should implement it with minimal data disclosure and interoperable signaling for users and networks.
-
-# Types of Platforms and Services
-
-While age assurance can apply across many kinds of online services, the majority of user exposure and regulatory debate concerns general-use platforms—social-media, messaging, gaming, and app-distribution ecosystems that mix adult and minor audiences. These platforms collect large volumes of user data and operate globally, so privacy, feasibility, and jurisdictional diversity become the most acute design challenges.
-
-In some jurisdictions, regulations already mandate the blocking or restriction of specific platforms for users below a certain age—for instance, national orders prohibiting access to social-media services such as TikTok for minors. Such measures highlight both the policy urgency and the architectural complexity of enforcing age-based restrictions at scale, since these platforms often serve mixed audiences and operate across borders.
-
-General-use platforms can be further grouped according to how users interact and how moderation and access controls are applied:
-
-• Social-interaction platforms (e.g., social networks, video-sharing, live streaming) — rely heavily on user-generated content and recommendation algorithms; enforcement usually combines self-attestation, parental tools, and service-level moderation.
-
-• Communication platforms (e.g., messaging, voice, forums) — involve private or semi-private exchanges where content is not always visible to the provider; here, age assurance must operate without content inspection, typically through account-level or device-level signaling.
-
-• Gaming and virtual-world platforms — include interactive environments with in-app purchases and chat; suitable controls combine guardian consent, payment-based age hints, and optional network-assisted filtering for external links.
-
-• App stores and distribution platforms — act as aggregation points enforcing developer compliance and can apply uniform age labels or assurance tokens to downstream services.
-
-Beyond these general-use categories, several specialized domains require tailored approaches:
-
-• Adult-only or restricted-commerce services — high-assurance verification with minimal data disclosure.
-
-• Governmental and public-sector services — identity-bound by default within existing eID frameworks.
-
-• Essential-rights services (banking, health, news, education) — broad accessibility and minimal friction.
-
-• Core Internet infrastructure (DNS, routing, encryption) — privacy-preserving and neutral, supporting only optional signaling chosen by the user or guardian.
-
-Focusing the analysis on general-use platforms helps clarify where architectural guidance is most needed. Specialized or regulated sectors already have established compliance channels, whereas mixed-audience platforms face the hardest trade-offs between safety, usability, and privacy.
 
 # Concluding recommendations
 
