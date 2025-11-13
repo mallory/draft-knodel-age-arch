@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-06T01:06:15.409282+00:00",
+  "timestamp": "2025-11-13T01:06:50.199924+00:00",
   "repo": "mallory/draft-knodel-age-arch",
   "labels": [
     {
@@ -71,7 +71,7 @@
       "id": "I_kwDOQOqL587VoHpb",
       "title": "Consolidate two redundant sections",
       "url": "https://github.com/mallory/draft-knodel-age-arch/issues/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mallory",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -80,9 +80,17 @@
       "labels": [],
       "body": "\"Types of web-based platforms and internet services\" and \"Types of Platforms and Services\" since they are mostly the same.",
       "createdAt": "2025-11-03T23:05:59Z",
-      "updatedAt": "2025-11-04T21:01:17Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-11-12T13:39:14Z",
+      "closedAt": "2025-11-12T13:39:13Z",
+      "comments": [
+        {
+          "author": "flyingeng",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Consolidated the 2 sections ",
+          "createdAt": "2025-11-12T13:39:14Z",
+          "updatedAt": "2025-11-12T13:39:14Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -110,6 +118,68 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOQOqL586y98LV",
+      "title": "Consolidate platform types section and add summary table",
+      "url": "https://github.com/mallory/draft-knodel-age-arch/pull/4",
+      "state": "OPEN",
+      "author": "flyingeng",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Consolidated platform types section; added jurisdictional reference and summary table.",
+      "createdAt": "2025-11-12T12:10:35Z",
+      "updatedAt": "2025-11-12T12:10:35Z",
+      "baseRepository": "mallory/draft-knodel-age-arch",
+      "baseRefName": "main",
+      "baseRefOid": "88bbc84bf61b0f53bad8f543885fd9a4f9684eeb",
+      "headRepository": "mallory/draft-knodel-age-arch",
+      "headRefName": "gscalone-platforms-section",
+      "headRefOid": "2f1a00f34f89caf5ee3e2935ce6d605a4521ca7e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOQOqL586y-_2L",
+      "title": "Fix table anchor and whitespace issues in Types of Platforms section",
+      "url": "https://github.com/mallory/draft-knodel-age-arch/pull/5",
+      "state": "MERGED",
+      "author": "flyingeng",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-11-12T13:33:34Z",
+      "updatedAt": "2025-11-12T13:38:34Z",
+      "baseRepository": "mallory/draft-knodel-age-arch",
+      "baseRefName": "main",
+      "baseRefOid": "88bbc84bf61b0f53bad8f543885fd9a4f9684eeb",
+      "headRepository": "mallory/draft-knodel-age-arch",
+      "headRefName": "gscalone-patch2",
+      "headRefOid": "79291f5efba95d0b348a8e7f3df3e2c42bb6c14f",
+      "closedAt": "2025-11-12T13:37:07Z",
+      "mergedAt": "2025-11-12T13:37:07Z",
+      "mergedBy": "flyingeng",
+      "mergeCommit": {
+        "oid": "1cf8862aeeb5a0e2df479f16b6d0d92b9775b7ff"
+      },
+      "comments": [
+        {
+          "author": "flyingeng",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Merged the sections \"Types of web-based platforms and internet services\" and \"Types of Platforms and Services\"; the draft builds cleanly now \ud83d\udc4d",
+          "createdAt": "2025-11-12T13:38:34Z",
+          "updatedAt": "2025-11-12T13:38:34Z"
+        }
+      ],
       "reviews": []
     }
   ]
