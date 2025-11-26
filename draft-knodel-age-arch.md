@@ -41,9 +41,83 @@ informative:
   EFF-Age-Terminology:
     title: "Age Assurance, Estimation, Verification—Oh My! A Guide to the Terminology"
     author:
+      - ins: R. Alajaji
       - org: Electronic Frontier Foundation (EFF)
     date: 2025-10
     target: https://www.eff.org/deeplinks/2025/10/age-verification-estimation-assurance-oh-my-guide-terminology
+
+  Cloudflare-Families:
+    title: "Introducing 1.1.1.1 for Families"
+    author:
+      - ins: M. Prince
+      - org: Cloudflare
+    date: 2020-04
+    target: https://blog.cloudflare.com/introducing-1-1-1-1-for-families/
+
+  Epic-KWS:
+    title: "Welcome to Kids Web Services (KWS)"
+    author:
+      - org: Epic Games
+    date: 2024
+    target: https://dev.epicgames.com/docs/kids-web-services/welcome-to-kws
+    
+  NIST-IR-7995:
+    title: "Face Recognition Vendor Test (FRVT) Performance of Automated Age Estimation Algorithms"
+    author:
+      - ins: M. Ngan
+      - ins: P. Grother
+      - org: National Institute of Standards and Technology (NIST)
+    date: 2014-03-20
+    target: https://nvlpubs.nist.gov/nistpubs/ir/2014/NIST.IR.7995.pdf
+
+  Ganel-2022:
+    title: "Biases in human perception of facial age are present and more exaggerated in current AI technology"
+    author:
+      - ins: T. Ganel
+      - ins: C. Sofer
+      - ins: M. A. Goodale
+    date: 2022
+    target: https://doi.org/10.1038/s41598-022-27009-w
+    
+  Newman-2022:
+    title: "Apple Kills Its Plan to Scan Your Photos for CSAM. Here’s What’s Next"
+    author:
+      - ins: L. H. Newman
+      - org: WIRED
+    date: 2022-12-07
+    target: https://www.wired.com/story/apple-photo-scanning-csam-communication-safety-messages/
+    
+  PrivacyIntl-2018:
+    title: "The Sustainable Development Goals, Identity, and Privacy: Does their implementation risk human rights?"
+    author:
+      - org: Privacy International
+    date: 2018-08-29
+    target: https://privacyinternational.org/long-read/2237/sustainable-development-goals-identity-and-privacy-does-their-implementation-risk
+
+  UN-HRC-29-32:
+    title: "Report of the Office of the United Nations High Commissioner for Human Rights: The Right to Privacy in the Digital Age"
+    author:
+      - org: United Nations Human Rights Council
+    date: 2015
+    target: https://undocs.org/A/HRC/29/32
+    
+  CDT-2021:
+    title: "Apple’s Changes to Messaging and Photo Services Threaten Users’ Security and Privacy"
+    author:
+      - org: Center for Democracy & Technology (CDT)
+    date: 2021-08-05
+    target: https://cdt.org/press/cdt-apples-changes-to-messaging-and-photo-services-threaten-users-security-and-privacy
+
+  CDT-2024:
+    title: "CDT Files Amicus Brief in Free Speech Coalition v. Paxton, Challenging TX Age Verification Law"
+    author:
+      - ins: K. Ruane
+      - ins: M. Branum
+      - ins: N. Doty
+      - ins: D. Jain
+      - org: Center for Democracy & Technology (CDT)
+    date: 2024-09-23
+    target: https://cdt.org/insights/cdt-files-amicus-brief-in-free-speech-coalition-v-paxton-challenging-tx-age-verification-law/
 
 ...
 
@@ -161,7 +235,7 @@ The user can self-attest, which is status quo for almost every service at this t
 
 A guardian can attest and be a legal guarantor to their children like Facebook Messenger Kids. This mechanism also serves to ensure a user is in fact a child, and not an adult impersonating a child.
 
-Connecting new users to parents’ accounts, COPPA “requires those operators to obtain verifiable consent from the children's parents before collecting, using, or disclosing children's personal information” and under GDPR they must “obtain this consent from a parent and make reasonable efforts to verify the identity of that parent.” (Epic Games, Kids Web Services (KWS) at “Welcome to Kids Web Services,” [https://dev.epicgames.com/docs/kids-web-services/welcome-to-kws](https://dev.epicgames.com/docs/kids-web-services/welcome-to-kws)).
+Connecting new users to parents’ accounts, COPPA “requires those operators to obtain verifiable consent from the children's parents before collecting, using, or disclosing children's personal information” and under GDPR they must “obtain this consent from a parent and make reasonable efforts to verify the identity of that parent.” [Epic-KWS]
 
 An additional concern is that this measure proliferates rather severely user data, risking feasibility. Rather than minimizing data not just about the child but for the parent, this requires all parents to first verify their age (invoke recursion analysis). Verifiable consent is then required in addition to verifying a parent-child relationship between users, all of which invoke hard document review.
 
@@ -175,7 +249,7 @@ Some examples of age estimation or inference of age have been proposed to use a 
 
 The behaviour of a user on a platform, including who they are friends with or what kind of content they engage in can provide some clues as to their age. However this data is limited to what service providers know about these users and is not as accurate for younger users since statistically there are fewer ways for the platform to know that its estimation is accurate.
 
-Biometric signals are considered age estimation rather than age assurance or verification because it’s not rooted in authoritative or ground truth. Biometric methods such as image or video facial scans are accompanied by a variety of flaws that prevent it from being a reasonable alternative. First, facial analysis technology is notoriously unreliable in estimating age, especially for teenagers, whose facial features change rapidly and vary widely. (Ngan, M. and P. Grother, Face Recognition Vendor Test (FRVT) Performance of Automated Age Estimation Algorithms, NIST Interagency Report 7995, Nat’l Inst. of Standards & Tech. (Mar. 20, 2014), https://nvlpubs.nist.gov/nistpubs/ir/2014/NIST.IR.7995.pdf) These tools can easily misclassify users depending on lighting, ethnicity, or facial expression. (Ganel, T., Sofer, C., & Goodale, M. A. (2022). Biases in human perception of facial age are present and more exaggerated in current AI technology. Scientific reports, 12(1), 22519\. [https://doi.org/10.1038/s41598-022-27009-w](https://doi.org/10.1038/s41598-022-27009-w))
+Biometric signals are considered age estimation rather than age assurance or verification because it’s not rooted in authoritative or ground truth. Biometric methods such as image or video facial scans are accompanied by a variety of flaws that prevent it from being a reasonable alternative. First, facial analysis technology is notoriously unreliable in estimating age, especially for teenagers, whose facial features change rapidly and vary widely. [NIST-IR-7995]. These tools can also misclassify users depending on factors such as lighting, ethnicity, or facial expression [Ganel-2022].
 
 ## Other
 
@@ -202,7 +276,7 @@ Devices enforce by interpreting or acting on signals from applications, browsers
 Some considerations for networks that enforce age gating may be instructive for any system design as well, though content moderation at this lower network layer tends to be objectionable \[\[RFC 9505\]\]:
 
 * There exist internet standards for any service to signal to the user that it is adult-only. Any device, including web browsers, can elect to confirm this signal. It would be recommended to require all services that disallow users under a specific age to use this standard to use the “restricted to adults” label and that the OS, browser and app levels heed this signal. (RTA Label, available at [https://www.rtalabel.org/](https://www.rtalabel.org/)) This should also be paired with self-attestation methods. Enforced by an ISP would be network level censorship.
-* Similar signaling could extend to DNS or resolver functions, where privacy-preserving flags indicate that a domain hosts age-restricted material. \[\[cite [http://blog.cloudflare.com/introducing-1-1-1-1-for-families/](http://blog.cloudflare.com/introducing-1-1-1-1-for-families/)\]\] Such information can guide optional filtering at the user or guardian’s request without content inspection or identity disclosure.
+* Similar signaling could extend to DNS or resolver functions, where privacy-preserving flags indicate that a domain hosts age-restricted material. [Cloudflare-Families] Such information can guide optional filtering at the user or guardian’s request without content inspection or identity disclosure.
 
 There is a view that common, interoperable approaches across service, device, and network layers could lower compliance costs and align incentives for safer adoption. However this lowering of barriers to implementation would be considered a negative if age-gating is considered a form of disenfranchisement and censorship, or if the age-gating capabilities are applied to additional attributes of end users.
 
@@ -264,9 +338,9 @@ In general the cross-platform and over-the-wire exchange of information describe
 
 When security tools are considered services that need age-gating such as in proposals to not allow youth to use end-to-end encryption this puts them at great risk and would never be supported by security considerations. Nor would age-gating of encryption be possible without some kind of intervention akin to backdooring encryption.
 
-Hard document review – If instantiated, such measures would require the collection, processing, storage and securing of sensitive personal data from all users, including minors, which increases the risk of harm in the case of data breaches. (Privacy International, The Sustainable Development Goals, Identity, and Privacy: Does their implementation risk human rights? (Aug. 29, 2018), https://privacyinternational.org/long-read/2237/sustainable-development-goals-identity-and-privacy-does-their-implementation-risk) This processing and storage are vectors for mass and targeted surveillance by any State jurisdiction party to the UN Convention on Cybercrime.
+Hard document review – If instantiated, such measures would require the collection, processing, storage and securing of sensitive personal data from all users, including minors, which increases the risk of harm in the case of data breaches. [PrivacyIntl-2018] This processing and storage are vectors for mass and targeted surveillance by any State jurisdiction party to the UN Convention on Cybercrime.
 
-Guardian and parental controls – This approach leaves the responsibility for age verification to parents, which can be fraught in some of the most acute cases of child abuse. \[\[Lily Hay Newman, Apple Kills Its Plan to Scan Your Photos for CSAM. Here’s What’s Next, WIRED (Dec. 7, 2022), [https://www.wired.com/story/apple-photo-scanning-csam-communication-safety-messages/](https://www.wired.com/story/apple-photo-scanning-csam-communication-safety-messages/)\]\] In short, outside the context of mandatory age verification, these mechanisms can be used as tools for abusive parental or guardian surveillance.
+Guardian and parental controls – This approach leaves the responsibility for age verification to parents, which can be fraught in some of the most acute cases of child abuse. [Newman-2022] In short, outside the context of mandatory age verification, these mechanisms can be used as tools for abusive parental or guardian surveillance.
 
 If the surveillance power is given to the state instead, encouraging oversight by a potentially abusive regime is of real concern. Neither state nor parental control addresses in-person abuse of a child and technology can not solve that societal issue.
 
@@ -276,15 +350,18 @@ Risks previously mentioned fundamentally challenge data-minimization efforts and
 
 General – Cross-platform tracking with methods that require all intermediary methods described above, spreading this information around rather than minimizing it.
 
-In general, any mandatory age verification will technically enforce limitations of being anonymous online and the right to access resources on the web without being bound to a general or long term identification process over time, which have implications for human rights.\[\[cite https://undocs.org/A/HRC/2932\]\]
+In general, any mandatory age verification will technically enforce limitations of being anonymous online and the right to access resources on the web without being bound to a general or long term identification process over time, which have implications for human rights.[UN-HRC-29-32]
+
 
 With third-party verification – the providers involved notwithstanding, the centralized risk of data being resold or mishandled increases.
 
-Guardian and parental controls – The main concern with these parental controls features is that they enable use but potentially, depending on how they are designed, surveilled use, which may harm children and teens by creating confusion about their privacy and autonomy. On the one hand they may feel a false sense of privacy and that their activities are insulated from the platform, and on the other hand they might self-censor out of concern for the oversight that the parental controls provide their caretakers. These proposals take a narrow view of parent-child relationships and fail to consider the harms as described briefly by CDT: “In particular, LGBTQ youth and children in abusive homes are especially vulnerable to injury and reprisals, including from their parents or guardians, and may inadvertently expose sensitive information about themselves or their friends to adults, with disastrous consequences.” \[\[cite CDT: Apple’s Changes to Messaging and Photo Services Threaten Users’ Security and Privacy, (Aug. 5, 2021), [https://cdt.org/press/cdt-apples-changes-to-messaging-and-photo-services-threaten-users-security-and-privacy](https://cdt.org/press/cdt-apples-changes-to-messaging-and-photo-services-threaten-users-security-and-privacy)\]\]
+Guardian and parental controls – The main concern with these parental controls features is that they enable use but potentially, depending on how they are designed, surveilled use, which may harm children and teens by creating confusion about their privacy and autonomy. On the one hand they may feel a false sense of privacy and that their activities are insulated from the platform, and on the other hand they might self-censor out of concern for the oversight that the parental controls provide their caretakers. These proposals take a narrow view of parent-child relationships and fail to consider the harms as described briefly by CDT: “In particular, LGBTQ youth and children in abusive homes are especially vulnerable to injury and reprisals, including from their parents or guardians, and may inadvertently expose sensitive information about themselves or their friends to adults, with disastrous consequences.” [CDT-2021]
+
 
 # Human rights considerations
 
-There is also significant agreement amongst the civil liberties and human rights communities that age verification poses more peril than the promise because of, “the ways in which they are often inaccurate; can be circumvented; present privacy and security risks; and may be entirely inaccessible to certain groups, including undocumented immigrants, unbanked individuals, people with disabilities, and others who either do not have access to government ids or who might be more commonly misidentified by biometric technology.” \[\[cite Ruane, Branum, Doty, Jain, CDT Files Amicus Brief in Free Speech Coalition v. Paxton, Challenging TX Age Verification Law, Center for Democracy and Technology (Sept. 23, 2024), [https://cdt.org/insights/cdt-files-amicus-brief-in-free-speech-coalition-v-paxton-challenging-tx-age-verification-law/](https://cdt.org/insights/cdt-files-amicus-brief-in-free-speech-coalition-v-paxton-challenging-tx-age-verification-law/)\]\]
+There is also significant agreement amongst the civil liberties and human rights communities that age verification poses more peril than the promise because of, “the ways in which they are often inaccurate; can be circumvented; present privacy and security risks; and may be entirely inaccessible to certain groups, including undocumented immigrants, unbanked individuals, people with disabilities, and others who either do not have access to government ids or who might be more commonly misidentified by biometric technology.” [CDT-2024]
+
 
 The Universal Declaration of Human Rights is fundamental to designing technical means of age-gating but also whether and how these means are implemented. \[\[RFC 8280\]\] Prior, we have addressed privacy in the previous section. Additionally are considerations for free expression and free association. Economic, Social and Cultural rights are also important to consider as these include the right to personhood eg hard documents issued by the state; but also how age-gating might impact a variety of aspects of life for young people in the digital age.
 
