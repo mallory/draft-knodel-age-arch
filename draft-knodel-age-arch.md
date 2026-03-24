@@ -34,6 +34,10 @@ author:
     fullname: Tom Newton
     organization: Qoria
     email: tom.newton@qoria.com
+ -
+    fullname: Audrey Hingle
+    organization: Exchange Point
+    email: audrey.hingle@gmail.com
 
 normative:
 
@@ -229,6 +233,27 @@ Beyond these mixed-audience environments, several **specialized domains** requir
 
 | **Platform / Service Type** | **Typical Assurance Level** | **Primary Enforcement Layer** | **Notes** |
 |------------------------------|-----------------------------|-------------------------------|------------|
+Age-assurance mechanisms cannot be applied uniformly across the Internet. Different platforms handle user data, content, and legal obligations in distinct ways, and therefore require proportionate, context-aware approaches. Enforcement can occur at several layers: core infrastructure and access networks may provide category-level controls; devices and browsers can interpret standardized labels; and services can apply context-specific age checks. Aligning these layers reduces redundancy and risk while maintaining privacy.
+
+The most visible and contested area is that of **general-use platforms**—social-media, messaging, gaming, and app-distribution ecosystems that mix adult and minor audiences. These platforms collect large volumes of user data and operate globally, making privacy, feasibility, and jurisdictional diversity critical design challenges. In some jurisdictions, regulations already mandate the blocking or restriction of specific platforms for under-age users—for example, national orders prohibiting access to social-media services such as TikTok for minors. Such measures highlight both the policy urgency and the architectural complexity of enforcing age-based restrictions at scale.
+
+**General-use platforms** can be grouped by how users interact and how moderation and access controls are applied:
+- **Social-interaction platforms** (e.g., video-sharing, live streaming) — rely heavily on user-generated content and recommendation algorithms; enforcement combines self-attestation, parental tools, and service-level moderation.
+- **Communication platforms** (e.g., messaging, forums) — enable private or semi-private exchanges; assurance must function without content inspection, typically through account-level or device-level signaling.
+- **Gaming and virtual-world platforms** — include in-app purchases and chat; controls combine guardian consent, payment-based age hints, and optional network-assisted filtering for external links.
+- **App stores and distribution platforms** — act as aggregation points that enforce developer compliance and propagate uniform age labels or assurance tokens to downstream services.
+
+Beyond these mixed-audience environments, several **specialized domains** require tailored approaches:
+- **Adult-only or restricted-commerce services** — need high-assurance verification with minimal data disclosure and interoperable signaling.
+- **Governmental and public-sector services** — are identity-bound by default within existing eID or authentication frameworks.
+- **Essential-rights services** (banking, health, education, news) — must remain broadly accessible and minimize friction.
+- **Core Internet infrastructure** (connectivity, routing, DNS, encryption) — should stay neutral and privacy-preserving, supporting only optional, user- or guardian-selected signaling.
+- **Context-dependent or borderline material** — content such as artistic nudity, tobacco, or weapons varies by culture and law; enforcement should rely on localized policy mapping rather than global content bans.
+
+#### Summary of assurance levels and enforcement layers by platform type {#assurance-summary-table}
+
+| Platform / Service Type | Typical Assurance Level | Primary Enforcement Layer | Notes |
+|---|---|---|---|
 | **Core Internet infrastructure** (connectivity, DNS, encryption) | None or optional self-attestation | Network / device | Remains neutral; may support user-selected, privacy-preserving signaling. |
 | **Governmental & public-sector services** | Verified identity (strong assurance) | Service / eID framework | Age linked to legal identity under statutory controls. |
 | **Essential-rights services** (banking, health, education, news) | Minimal assurance or self-attestation | Service / device | Broad accessibility required; avoid discrimination or exclusion. |
