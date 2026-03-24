@@ -34,6 +34,10 @@ author:
     fullname: Tom Newton
     organization: Qoria
     email: tom.newton@qoria.com
+ -
+    fullname: Audrey Hingle
+    organization: Exchange Point
+    email: audrey.hingle@gmail.com
 
 normative:
 
