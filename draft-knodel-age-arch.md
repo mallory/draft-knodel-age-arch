@@ -123,8 +123,6 @@ informative:
     date: 2024-09-23
     target: https://cdt.org/insights/cdt-files-amicus-brief-in-free-speech-coalition-v-paxton-challenging-tx-age-verification-law/
 
-...
-
 --- abstract
 
 This document describes solution-agnostic and technology-neutral schema for how various intermediaries can gate content and services based on age. The analysis of the architecture is done based on the effectiveness of permitting or restricting access based on age. The document concludes with recommendations as well as critical privacy, security and human rights considerations.
