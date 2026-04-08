@@ -265,8 +265,8 @@ Rather than continuous geolocation, minimal-exposure signaling between networks 
 
 Content moderation more broadly is the commitment of services and platforms to ensure online experiences are fit for purpose, given the intended user base. For example certain k-12 educational websites with user generated content are certainly engaged in some strong degree of content moderation because the platform is for learning in schools, and not, say, popular culture or entertainment.
 
-#### Age-Gating Methods Mapped by Effectiveness and Privacy Concern {#age-methods-matrix}
-The figure below maps age-gating methods along two axes: the degree of privacy concern they introduce (left to right) and their relative effectiveness at restricting access by age (bottom to top). Methods in the upper-right quadrant are both more effective and more privacy-invasive, while those in the lower-left impose fewer privacy costs but offer weaker assurance.![Age verification methods by privacy concern and effectiveness](age-methods-matrix.png)
+### Age-Gating Methods Mapped by Effectiveness and Privacy Concern {#age-methods-matrix}
+The figure below maps age-gating methods along two axes: the degree of privacy concern they introduce (left to right) and their relative effectiveness at restricting access by age (bottom to top). Methods in the upper-right quadrant are both more effective and more privacy-invasive, while those in the lower-left impose fewer privacy costs but offer weaker assurance.![Age verification methods by privacy concern and effectiveness](age-methods-matrix.svg)
 # Enforcement
 
 Once age has been determined to a satisfactory degree, it’s important to interrogate the means by which content or a service is either accessible or not. This happens solely at the service level. In this section we expand on what happens once the service has obtained age assurance, or age verification if it has been party to hard documentation directly.
@@ -286,22 +286,22 @@ There is a view that common, interoperable approaches across service, device, an
 
 ## Types of Platforms and Services
 
-Age-assurance mechanisms cannot be applied uniformly across the Internet. Different platforms handle user data, content, and legal obligations in distinct ways, and therefore require proportionate, context-aware approaches. Enforcement can occur at several layers: core infrastructure and access networks may provide category-level controls; devices and browsers can interpret standardized labels; and services can apply context-specific age checks. Aligning these layers reduces redundancy and risk while maintaining privacy.  
+Age-assurance mechanisms cannot be applied uniformly across the Internet. Different platforms handle user data, content, and legal obligations in distinct ways, and therefore require proportionate, context-aware approaches. Enforcement can occur at several layers: core infrastructure and access networks may provide category-level controls; devices and browsers can interpret standardized labels; and services can apply context-specific age checks. Aligning these layers reduces redundancy and risk while maintaining privacy.
 
-The most visible and contested area is that of **general-use platforms**—social-media, messaging, gaming, and app-distribution ecosystems that mix adult and minor audiences. These platforms collect large volumes of user data and operate globally, making privacy, feasibility, and jurisdictional diversity critical design challenges. In some jurisdictions, regulations already mandate the blocking or restriction of specific platforms for under-age users—for example, national orders prohibiting access to social-media services such as TikTok for minors. Such measures highlight both the policy urgency and the architectural complexity of enforcing age-based restrictions at scale.  
+The most visible and contested area is that of **general-use platforms**—social-media, messaging, gaming, and app-distribution ecosystems that mix adult and minor audiences. These platforms collect large volumes of user data and operate globally, making privacy, feasibility, and jurisdictional diversity critical design challenges. In some jurisdictions, regulations already mandate the blocking or restriction of specific platforms for under-age users—for example, national orders prohibiting access to social-media services such as TikTok for minors. Such measures highlight both the policy urgency and the architectural complexity of enforcing age-based restrictions at scale.
 
-**General-use platforms** can be grouped by how users interact and how moderation and access controls are applied:  
-- **Social-interaction platforms** (e.g., video-sharing, live streaming) — rely heavily on user-generated content and recommendation algorithms; enforcement combines self-attestation, parental tools, and service-level moderation.  
-- **Communication platforms** (e.g., messaging, forums) — enable private or semi-private exchanges; assurance must function without content inspection, typically through account-level or device-level signaling.  
-- **Gaming and virtual-world platforms** — include in-app purchases and chat; controls combine guardian consent, payment-based age hints, and optional network-assisted filtering for external links.  
-- **App stores and distribution platforms** — act as aggregation points that enforce developer compliance and propagate uniform age labels or assurance tokens to downstream services.  
+**General-use platforms** can be grouped by how users interact and how moderation and access controls are applied:
+- **Social-interaction platforms** (e.g., video-sharing, live streaming) — rely heavily on user-generated content and recommendation algorithms; enforcement combines self-attestation, parental tools, and service-level moderation.
+- **Communication platforms** (e.g., messaging, forums) — enable private or semi-private exchanges; assurance must function without content inspection, typically through account-level or device-level signaling.
+- **Gaming and virtual-world platforms** — include in-app purchases and chat; controls combine guardian consent, payment-based age hints, and optional network-assisted filtering for external links.
+- **App stores and distribution platforms** — act as aggregation points that enforce developer compliance and propagate uniform age labels or assurance tokens to downstream services.
 
-Beyond these mixed-audience environments, several **specialized domains** require tailored approaches:  
-- **Adult-only or restricted-commerce services** — need high-assurance verification with minimal data disclosure and interoperable signaling.  
-- **Governmental and public-sector services** — are identity-bound by default within existing eID or authentication frameworks.  
-- **Essential-rights services** (banking, health, education, news) — must remain broadly accessible and minimize friction.  
-- **Core Internet infrastructure** (connectivity, routing, DNS, encryption) — should stay neutral and privacy-preserving, supporting only optional, user- or guardian-selected signaling.  
-- **Context-dependent or borderline material** — content such as artistic nudity, tobacco, or weapons varies by culture and law; enforcement should rely on localized policy mapping rather than global content bans.  
+Beyond these mixed-audience environments, several **specialized domains** require tailored approaches:
+- **Adult-only or restricted-commerce services** — need high-assurance verification with minimal data disclosure and interoperable signaling.
+- **Governmental and public-sector services** — are identity-bound by default within existing eID or authentication frameworks.
+- **Essential-rights services** (banking, health, education, news) — must remain broadly accessible and minimize friction.
+- **Core Internet infrastructure** (connectivity, routing, DNS, encryption) — should stay neutral and privacy-preserving, supporting only optional, user- or guardian-selected signaling.
+- **Context-dependent or borderline material** — content such as artistic nudity, tobacco, or weapons varies by culture and law; enforcement should rely on localized policy mapping rather than global content bans.
 
 ### Table 1 – Typical assurance levels and enforcement layers by platform type
 
