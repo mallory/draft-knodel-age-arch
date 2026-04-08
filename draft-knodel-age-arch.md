@@ -266,7 +266,9 @@ Rather than continuous geolocation, minimal-exposure signaling between networks 
 Content moderation more broadly is the commitment of services and platforms to ensure online experiences are fit for purpose, given the intended user base. For example certain k-12 educational websites with user generated content are certainly engaged in some strong degree of content moderation because the platform is for learning in schools, and not, say, popular culture or entertainment.
 
 ### Age-Gating Methods Mapped by Effectiveness and Privacy Concern
-The figure below maps age-gating methods along two axes: the degree of privacy concern they introduce (left to right) and their relative effectiveness at restricting access by age (bottom to top). Methods in the upper-right quadrant are both more effective and more privacy-invasive, while those in the lower-left impose fewer privacy costs but offer weaker assurance.![Age verification methods by privacy concern and effectiveness](age-methods-matrix.svg)
+The figure below maps age-gating methods along two axes: the degree of privacy concern they introduce (left to right) and their relative effectiveness at restricting access by age (bottom to top). Methods in the upper-right quadrant are both more effective and more privacy-invasive, while those in the lower-left impose fewer privacy costs but offer weaker assurance.
+
+![Age verification methods by privacy concern and effectiveness](age-methods-matrix.svg)
 # Enforcement
 
 Once age has been determined to a satisfactory degree, it’s important to interrogate the means by which content or a service is either accessible or not. This happens solely at the service level. In this section we expand on what happens once the service has obtained age assurance, or age verification if it has been party to hard documentation directly.
