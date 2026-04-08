@@ -64,7 +64,7 @@ informative:
       - org: Epic Games
     date: 2024
     target: https://dev.epicgames.com/docs/kids-web-services/welcome-to-kws
-    
+
   NIST-IR-7995:
     title: "Face Recognition Vendor Test (FRVT) Performance of Automated Age Estimation Algorithms"
     author:
@@ -82,7 +82,7 @@ informative:
       - ins: M. A. Goodale
     date: 2022
     target: https://doi.org/10.1038/s41598-022-27009-w
-    
+
   Newman-2022:
     title: "Apple Kills Its Plan to Scan Your Photos for CSAM. Here’s What’s Next"
     author:
@@ -90,7 +90,7 @@ informative:
       - org: WIRED
     date: 2022-12-07
     target: https://www.wired.com/story/apple-photo-scanning-csam-communication-safety-messages/
-    
+
   PrivacyIntl-2018:
     title: "The Sustainable Development Goals, Identity, and Privacy: Does their implementation risk human rights?"
     author:
@@ -104,7 +104,7 @@ informative:
       - org: United Nations Human Rights Council
     date: 2015
     target: https://undocs.org/A/HRC/29/32
-    
+
   CDT-2021:
     title: "Apple’s Changes to Messaging and Photo Services Threaten Users’ Security and Privacy"
     author:
@@ -265,7 +265,7 @@ Rather than continuous geolocation, minimal-exposure signaling between networks 
 
 Content moderation more broadly is the commitment of services and platforms to ensure online experiences are fit for purpose, given the intended user base. For example certain k-12 educational websites with user generated content are certainly engaged in some strong degree of content moderation because the platform is for learning in schools, and not, say, popular culture or entertainment.
 
-### Age-Gating Methods Mapped by Effectiveness and Privacy Concern {#age-methods-matrix}
+### Age-Gating Methods Mapped by Effectiveness and Privacy Concern
 The figure below maps age-gating methods along two axes: the degree of privacy concern they introduce (left to right) and their relative effectiveness at restricting access by age (bottom to top). Methods in the upper-right quadrant are both more effective and more privacy-invasive, while those in the lower-left impose fewer privacy costs but offer weaker assurance.![Age verification methods by privacy concern and effectiveness](age-methods-matrix.svg)
 # Enforcement
 
