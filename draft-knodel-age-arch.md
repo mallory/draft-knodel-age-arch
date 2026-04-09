@@ -251,7 +251,7 @@ Some examples of age estimation or inference of age have been proposed to use a 
 
 The behaviour of a user on a platform, including who they are friends with or what kind of content they engage in can provide some clues as to their age. However this data is limited to what service providers know about these users and is not as accurate for younger users since statistically there are fewer ways for the platform to know that its estimation is accurate.
 
-Biometric signals are considered age estimation rather than age assurance or verification because it’s not rooted in authoritative or ground truth. Biometric methods such as image or video facial scans are accompanied by a variety of flaws that prevent it from being a reasonable alternative. First, facial analysis technology is notoriously unreliable in estimating age, especially for teenagers, whose facial features change rapidly and vary widely. [NIST-IR-7995]. These tools can also misclassify users depending on factors such as lighting, ethnicity, or facial expression [Ganel-2022].
+Biometric signals are considered age estimation rather than age assurance or verification because it’s not rooted in authoritative or ground truth. Biometric methods such as image or video facial scans are accompanied by a variety of flaws that prevent it from being a reasonable alternative. First, facial analysis technology is notoriously unreliable in estimating age, especially for teenagers, whose facial features change rapidly and vary widely. [NIST-IR-7995] These tools can also misclassify users depending on factors such as lighting, ethnicity, or facial expression [Ganel-2022].
 
 ## Other
 
