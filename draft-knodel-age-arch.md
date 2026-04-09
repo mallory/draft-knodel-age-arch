@@ -267,6 +267,7 @@ Content moderation more broadly is the commitment of services and platforms to e
 
 ### Age-Gating Methods Mapped by Effectiveness and Privacy Concern
 The figure below maps age-gating methods along two axes: the degree of privacy concern they introduce (left to right) and their relative effectiveness at restricting access by age (bottom to top). Methods in the upper-right quadrant are both more effective and more privacy-invasive, while those in the lower-left impose fewer privacy costs but offer weaker assurance.
+![Age verification methods by privacy concern and effectiveness](https://raw.githubusercontent.com/mallory/draft-knodel-age-arch/main/age-methods-matrix.svg)
 
 # Enforcement
 
