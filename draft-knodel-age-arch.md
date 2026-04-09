@@ -268,7 +268,8 @@ Content moderation more broadly is the commitment of services and platforms to e
 ## Age-Gating Methods Mapped by Effectiveness and Privacy Concern
 The figure below maps age-gating methods along two axes: the degree of privacy concern they introduce (left to right) and their relative effectiveness at restricting access by age (bottom to top). Methods in the upper-right quadrant are both more effective and more privacy-invasive, while those in the lower-left impose fewer privacy costs but offer weaker assurance.
 
-Figure: Age verification methods by privacy concern and effectiveness.
+> ![Age verification methods by privacy concern and effectiveness](age-methods-matrix.svg "Age verification methods by privacy concern and effectiveness")
+
 
 # Enforcement
 
@@ -306,7 +307,7 @@ Beyond these mixed-audience environments, several **specialized domains** requir
 - **Core Internet infrastructure** (connectivity, routing, DNS, encryption) — should stay neutral and privacy-preserving, supporting only optional, user- or guardian-selected signaling.
 - **Context-dependent or borderline material** — content such as artistic nudity, tobacco, or weapons varies by culture and law; enforcement should rely on localized policy mapping rather than global content bans.
 
-### Table 1 – Typical assurance levels and enforcement layers by platform type
+### Table1 – Typical assurance levels and enforcement layers by platform type
 
 | **Platform / Service Type** | **Typical Assurance Level** | **Primary Enforcement Layer** | **Notes** |
 |------------------------------|-----------------------------|-------------------------------|------------|
