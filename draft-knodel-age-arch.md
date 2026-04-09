@@ -42,6 +42,8 @@ author:
 normative:
 
 informative:
+  RFC9505:
+  RFC8280:
   EFF-Age-Terminology:
     title: "Age Assurance, Estimation, Verification—Oh My! A Guide to the Terminology"
     author:
@@ -121,7 +123,11 @@ informative:
       - ins: D. Jain
       - org: Center for Democracy & Technology (CDT)
     date: 2024-09-23
-    target: https://cdt.org/insights/cdt-files-amicus-brief-in-free-speech-coalition-v-paxton-challenging-tx-age-verification-law/
+    target: https://cdt.org/insights/cdt-files-amicus-brief-in-free-speech-coalition-v-paxton-challenging-tx-age-verification-law
+
+  RTA:
+    title: "RTA Label"
+    target: https://www.rtalabel.org
 
 --- abstract
 
@@ -281,9 +287,9 @@ Platforms and services enforce by limiting access or visibility of certain categ
 
 Devices enforce by interpreting or acting on signals from applications, browsers, or operating systems to restrict or permit access. For instance, parental-control settings or OS-level content ratings can automatically block apps or sites flagged as adult. Device-level enforcement is often marketed as a privacy-preserving solution because it happens locally, but it can also centralize control in a few proprietary ecosystems and create dependency on vendor-defined “age ratings.” This can entrench cultural biases or commercial interests rather than reflect nuanced or localized standards.
 
-Some considerations for networks that enforce age gating may be instructive for any system design as well, though content moderation at this lower network layer tends to be objectionable \[\[RFC 9505\]\]:
+Some considerations for networks that enforce age gating may be instructive for any system design as well, though content moderation at this lower network layer tends to be objectionable [RFC9505]:
 
-* There exist internet standards for any service to signal to the user that it is adult-only. Any device, including web browsers, can elect to confirm this signal. It would be recommended to require all services that disallow users under a specific age to use this standard to use the “restricted to adults” label and that the OS, browser and app levels heed this signal. (RTA Label, available at [https://www.rtalabel.org/](https://www.rtalabel.org/)) This should also be paired with self-attestation methods. Enforced by an ISP would be network level censorship.
+* There exist internet standards for any service to signal to the user that it is adult-only. Any device, including web browsers, can elect to confirm this signal. It would be recommended to require all services that disallow users under a specific age to use this standard to use the “restricted to adults” label and that the OS, browser and app levels heed this signal [RTA]. This should also be paired with self-attestation methods. Enforced by an ISP would be network level censorship.
 * Similar signaling could extend to DNS or resolver functions, where privacy-preserving flags indicate that a domain hosts age-restricted material. [Cloudflare-Families] Such information can guide optional filtering at the user or guardian’s request without content inspection or identity disclosure.
 
 There is a view that common, interoperable approaches across service, device, and network layers could lower compliance costs and align incentives for safer adoption. However this lowering of barriers to implementation would be considered a negative if age-gating is considered a form of disenfranchisement and censorship, or if the age-gating capabilities are applied to additional attributes of end users.
@@ -392,7 +398,7 @@ Guardian and parental controls – The main concern with these parental controls
 There is also significant agreement amongst the civil liberties and human rights communities that age verification poses more peril than the promise because of, “the ways in which they are often inaccurate; can be circumvented; present privacy and security risks; and may be entirely inaccessible to certain groups, including undocumented immigrants, unbanked individuals, people with disabilities, and others who either do not have access to government ids or who might be more commonly misidentified by biometric technology.” [CDT-2024]
 
 
-The Universal Declaration of Human Rights is fundamental to designing technical means of age-gating but also whether and how these means are implemented. \[\[RFC 8280\]\] Prior, we have addressed privacy in the previous section. Additionally are considerations for free expression and free association. Economic, Social and Cultural rights are also important to consider as these include the right to personhood eg hard documents issued by the state; but also how age-gating might impact a variety of aspects of life for young people in the digital age.
+The Universal Declaration of Human Rights is fundamental to designing technical means of age-gating but also whether and how these means are implemented [RFC8280]. Prior, we have addressed privacy in the previous section. Additionally are considerations for free expression and free association. Economic, Social and Cultural rights are also important to consider as these include the right to personhood eg hard documents issued by the state; but also how age-gating might impact a variety of aspects of life for young people in the digital age.
 
 ## Free expression
 
