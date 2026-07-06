@@ -412,10 +412,17 @@ Table of Contents
    theoretically be extended to any industry including social media,
    education platforms or blogging websites.  However, doing so would
    blur the line between financial compliance and social regulation,
-   embedding surveillance logics into general internet use.  It could
-   also make access to general-use and basic communication services
-   contingent on a financial transaction framework, which not all
-   internet-accessible platforms and services provide.
+   embedding surveillance logics into general internet use.  Absent a
+   legal mandate to do otherwise, verifying parties tend toward the
+   cheapest available option rather than the most protective one, and
+   data collected for this purpose can enter the broader data-broker
+   ecosystem, where it becomes vulnerable to unknown, non-consensual
+   secondary uses—including acquisition by a government seeking to
+   identify individuals it could not otherwise lawfully compel
+   disclosure from.  [TechPolicyPress-Marechal-2026] It could also make
+   access to general-use and basic communication services contingent on
+   a financial transaction framework, which not all internet-accessible
+   platforms and services provide.
 
    Operating system–level verification shifts responsibility to device
    vendors and app ecosystems.  While this potentially removes
@@ -909,6 +916,24 @@ Table of Contents
 
 5.  Security considerations
 
+   Age verification is broadly framed as a child-safety measure, but its
+   practical effect is to normalize general-purpose, identity-check
+   infrastructure across the internet.  That normalization is itself a
+   cybersecurity as much as it is a civil-liberties problem, independent
+   of how well any single implementation is designed.  Once a mechanism
+   exists for identity verification, including age, at scale, it does
+   not stay confined to its stated purpose or to the systems that were
+   originally built to require it: the same infrastructure becomes
+   available to whichever actor is best positioned to compel or acquire
+   it, including a government motivated to identify individuals it could
+   not otherwise lawfully compel disclosure from.  One prior case of
+   attempt to standardize ID verification in the IETF was avoided
+   previously for the same reasons [ARTICLE19-ChinaID-2025].  A strong
+   "critique of security" is bold enough to recognize that the
+   government-led requirement to acquire data to target disfavored
+   groups risks constructing the tracking apparatus consistent with
+   fascism.  [TechPolicyPress-Marechal-2026]
+
    In general the cross-platform and over-the-wire exchange of
    information described in nearly all of the architectural choices
    above implicate security risks due to the complexity of the
@@ -1099,6 +1124,12 @@ Table of Contents
 
 9.  Informative References
 
+   [ARTICLE19-ChinaID-2025]
+              ARTICLE 19, "China: Draft Internet ID Measure Threatens to
+              Tighten Online Censorship", 4 February 2025,
+              <https://www.article19.org/resources/china-draft-internet-
+              id-measure-tightening-online-censorship/>.
+
    [CDT-2021] Center for Democracy & Technology (CDT), "Apple’s Changes
               to Messaging and Photo Services Threaten Users’ Security
               and Privacy", 5 August 2021, <https://cdt.org/press/cdt-
@@ -1277,6 +1308,12 @@ Table of Contents
               <https://www.techpolicy.press/tracking-efforts-to-
               restrict-or-ban-teens-from-social-media-across-the-
               globe/>.
+
+   [TechPolicyPress-Marechal-2026]
+              Maréchal, N. and Tech Policy Press, "Tech Policy Is On the
+              Front Line of Fascism vs. Democracy. Pick a Side.", 4 May
+              2026, <https://www.techpolicy.press/tech-policy-is-on-the-
+              front-line-of-fascism-vs-democracy-pick-a-side/>.
 
    [UN-HRC-29-32]
               United Nations Human Rights Council, "Report of the Office
