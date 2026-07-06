@@ -52,6 +52,23 @@ informative:
     date: 2025-10
     target: https://www.eff.org/deeplinks/2025/10/age-verification-estimation-assurance-oh-my-guide-terminology
 
+  EFF-FinkeControl-2026:
+    title: "Rep. Finke Was Right: Age-Gating Isn’t About Kids, It’s About Control"
+    author:
+      - ins: R. Alajaji
+      - ins: M. Buckley
+      - org: Electronic Frontier Foundation (EFF)
+    date: 2026-03
+    target: https://www.eff.org/deeplinks/2026/03/rep-finke-was-right-age-gating-isnt-about-kids-its-about-control
+
+  EFF-ScienceNotSettled-2026:
+    title: "The Science is Not Settled: How Weak Evidence is Fueling a National Push to Ban Social Media for Youth"
+    author:
+      - ins: R. Alajaji
+      - org: Electronic Frontier Foundation (EFF)
+    date: 2026-05
+    target: https://www.eff.org/deeplinks/2026/05/science-not-settled-how-weak-evidence-fueling-national-push-ban-social-media-youth
+
   Cloudflare-Families:
     title: "Introducing 1.1.1.1 for Families"
     author:
@@ -189,9 +206,11 @@ Language matters because it shapes how we think about these systems. "Assurance"
 
 # Analysis of age gating methods
 
-In this section, we analyse purely based on the efficacy of providing and restricting access based on age. Efficacy means that it works, but also we consider feasibility, circumvention and accuracy.
+In this section, we analyse methods along two dimensions: efficacy and privacy. Efficacy asks whether a mechanism works: is it feasible to build and operate at the scale required, is it durable against circumvention, and is it accurate. Privacy asks what a mechanism costs even when it works as intended: what it discloses beyond age, to whom, and for how long. These are the same two dimensions mapped by the effectiveness/privacy-concern chart later in this section; here we make each explicit before describing individual methods.
 
-Efficacy should also reflect cooperation across layers—service, device, and network—so that no single actor bears full responsibility or control of user data. In/Feasibility also includes operational scalability—methods that add latency or centralize look-ups may weaken both reliability and privacy. Circumvention may occur not only by users but also through weak or misaligned intermediaries; distributing enforcement across independent layers limits large-scale bypass. In/accuracy of the method, false positives and negatives, and what users can do about it. Recourse and remedy, e.g. who is responsible and what happens when: the determination of age could be wrong; age-verification is inaccurate; no one adopts it and users don’t use it; people abuse it; companies abuse it; there is a breach; it can be circumvented.
+Efficacy should also reflect cooperation across layers—service, device, and network—so that no single actor bears full responsibility or control of user data. Feasibility also includes operational scalability—methods that add latency or centralize look-ups may weaken both reliability and privacy, an interaction we return to below. Circumvention may occur not only by users but also through weak or misaligned intermediaries; distributing enforcement across independent layers limits large-scale bypass. Accuracy covers false positives and negatives in aggregate, but also differential accuracy: whether error rates, or the ability to be assessed by a method at all, vary meaningfully across populations—those least able to produce the artifact a method relies on are functionally misclassified by it, which we treat as an accuracy failure rather than a separate concern. Recourse and remedy—who is responsible and what happens when a determination is wrong, a method proves infeasible or unadopted, a control is circumvented, or data is breached—is not a category of its own, but a question of accountability applied wherever the above fail.
+
+Privacy asks what a method costs beyond whether it works. Two questions recur across the methods below: what does the method disclose to a verifying party beyond age itself, and how long is that information—or the infrastructure built to hold it—retained; and, given that people and code are imperfect, how severe is the exposure if that data is breached. The latter is a function of both privacy exposure and the feasibility choices above—a method that centralizes look-ups compounds the severity of any breach. We map methods along both dimensions in the effectiveness/privacy-concern chart below.
 
 For all of these approaches, there are also a number of overarching issues that make them less desirable. For example, as noted above, many would require collection of precise location information to comply with jurisdiction-by-jurisdiction privacy laws or other requirements. Important to note that geolocating users remains an unsolved problem. Inaccurate geolocation means people will be unnecessarily excluded or have an incorrect set of laws applied to them. This problem is likely to get worse as IPv4 fragments further.
 
@@ -394,14 +413,14 @@ Guardian and parental controls – The main concern with these parental controls
 
 # Human rights considerations
 
-There is also significant agreement amongst the civil liberties and human rights communities that age verification poses more peril than the promise because of, “the ways in which they are often inaccurate; can be circumvented; present privacy and security risks; and may be entirely inaccessible to certain groups, including undocumented immigrants, unbanked individuals, people with disabilities, and others who either do not have access to government ids or who might be more commonly misidentified by biometric technology.” [CDT-2024]
+There is also significant agreement amongst the civil liberties and human rights communities that age verification poses more peril than the promise because of, “the ways in which they are often inaccurate; can be circumvented; present privacy and security risks; and may be entirely inaccessible to certain groups, including undocumented immigrants, unbanked individuals, people with disabilities, and others who either do not have access to government ids or who might be more commonly misidentified by biometric technology.” [CDT-2024] This peril is compounded by a contested evidence base: cross-national analyses have not established a consistent, measurable link between social media use and declines in youth well-being, and much of the research relied upon by proponents of youth social-media bans has been criticized for methodological weaknesses that overlook confounding factors such as pre-existing mental health conditions. [EFF-ScienceNotSettled-2026]
 
 
 The Universal Declaration of Human Rights is fundamental to designing technical means of age-gating but also whether and how these means are implemented [RFC8280]. Prior, we have addressed privacy in the previous section. Additionally are considerations for free expression and free association. Economic, Social and Cultural rights are also important to consider as these include the right to personhood eg hard documents issued by the state; but also how age-gating might impact a variety of aspects of life for young people in the digital age.
 
 ## Free expression
 
-Any content gating risks limiting lawful access to information, disproportionately affecting most marginalized people’s ability to engage in political, educational, and artistic discourse. Overbroad implementation risks chilling participation in online spaces that are essential for learning, advocacy, and identity formation, undermining Article 19 of the UDHR.
+Any content gating risks limiting lawful access to information, disproportionately affecting most marginalized people’s ability to engage in political, educational, and artistic discourse. Overbroad implementation risks chilling participation in online spaces that are essential for learning, advocacy, and identity formation, undermining Article 19 of the UDHR. This is not merely hypothetical: age-verification mandates have already been used to restrict lawful youth access to content concerning sexuality, gender identity, and reproductive health under expanded definitions of material "harmful to minors," demonstrating that the practical effect of such mandates can extend well beyond their stated child-safety purpose. [EFF-FinkeControl-2026]
 
 ## Free association
 
