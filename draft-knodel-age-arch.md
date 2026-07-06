@@ -44,6 +44,136 @@ normative:
 informative:
   RFC9505:
   RFC8280:
+  DTSP:
+    title: "Age Assurance: Guiding Principles and Best Practices"
+    author:
+      - org: Digital Trust & Safety Partnership
+    date: 2023
+    target: https://dtspartnership.org/age-assurance-guiding-principles-best-practices/
+
+  FPF-Infographic:
+    title: "Unpacking Age Assurance: Technologies and Tradeoffs"
+    author:
+      - org: Future of Privacy Forum
+    date: 2026-02
+    target: https://fpf.org/wp-content/uploads/2026/02/FPF-Age-Assurance-v2.0.pdf
+
+  Google-Blog:
+    title: "Ensuring a safer online experience for U.S. kids and teens"
+    author:
+      - org: Google
+    date: 2025-07-30
+    target: https://blog.google/innovation-and-ai/technology/safety-security/age-assurance-measures-safer-online-kids-teens-us/
+
+  TechLegality:
+    title: "Online Platform Regulation and Children's Rights and Safety in a Digital World: A Global Comparative Analysis"
+    author:
+      - ins: S. Witting
+      - ins: L. Berton
+      - ins: E. Day
+      - org: Tech Legality (commissioned by UNICEF)
+    date: 2025-12
+    target: https://ee4cc382-be9b-4f25-8d92-aa92d93128f5.filesusr.com/ugd/94468e_1921d31ba90741b3b4a39fc3f710b015.pdf
+
+  UNICEF-Line:
+    title: "Drawing a Line in Digital Spaces"
+    author:
+      - org: UNICEF
+    date: 2026
+    target: https://www.unicef.org/documents/drawing-line-digital-spaces
+
+  ISO-27566-1:
+    title: "Information security, cybersecurity and privacy protection — Age assurance systems — Part 1: Framework"
+    author:
+      - org: ISO/IEC JTC 1/SC 27
+    date: 2025
+    target: https://www.iso.org/standard/88143.html
+
+  PublicKnowledge-2026:
+    title: "Getting Age Assurance Right: A Risk Based Framework for High-Risk Online Features"
+    author:
+      - ins: S. Collins
+      - org: Public Knowledge
+    date: 2026
+    target: https://publicknowledge.org/policy/getting-age-assurance-right-a-risk-based-framework-for-high-risk-online-features/
+
+  CDT-Guardian-2026:
+    title: "Upload government papers to go online? That may be our new terrifying future"
+    author:
+      - ins: A. Bhatia
+      - org: Center for Democracy & Technology (CDT), in The Guardian
+    date: 2026-05-12
+    target: https://www.theguardian.com/commentisfree/2026/may/12/website-age-verification-government-identification
+
+  CDT-Guardrails-2025:
+    title: "Mitigating Risk to Rights with Age Verification: Privacy-Preserving Guardrails That Should Accompany Deployments of Age Verification Approaches"
+    author:
+      - ins: A. Bhatia
+      - ins: N. Doty
+      - org: Center for Democracy & Technology (CDT)
+    date: 2025-10-10
+    target: https://cdt.org/insights/mitigating-risk-to-rights-with-age-verification-privacy-preserving-guardrails-that-should-accompany-deployments-of-age-verification-approaches/
+
+  PapersPlease-2026:
+    title: "Papers, Please: A First Look at Age Verification on the Web"
+    author:
+      - ins: S. Minocha
+      - ins: I. Sheridan
+      - ins: H. Oppenheimer
+      - ins: P. Pearce
+      - ins: M. A. Specter
+    date: 2026
+    target: https://pearce.prof/papers/age_verification_sp_2026.pdf
+
+  UNICEF-Cert-2025:
+    title: "Certification Schemes"
+    author:
+      - ins: E. Day
+      - ins: V. Lerch
+      - org: UNICEF Innocenti
+    date: 2025
+    target: https://www.unicef.org/innocenti/media/11101/file/UNICEF-Innocenti-Certification-Schemes-Case-Study-2025.pdf
+
+  UNICEF-Standards-2025:
+    title: "Industry Standards"
+    author:
+      - ins: E. Day
+      - ins: L. Berton
+      - org: UNICEF Innocenti
+    date: 2025
+    target: https://www.unicef.org/innocenti/media/11541/file/UNICEF-Innocenti-Data-Governance-Industry-Standards-2025.pdf
+
+  OHCHR-UN-2026:
+    title: "Banning children from social media is not the answer, UN warns – platforms must be made safe by design"
+    author:
+      - org: UN News / Office of the High Commissioner for Human Rights (OHCHR)
+    date: 2026-05-29
+    target: https://news.un.org/en/story/2026/05/1167608
+
+  eSafety-AU-2026:
+    title: "Social Media Minimum Age: March 2026 Compliance Update"
+    author:
+      - org: Australian eSafety Commissioner
+    date: 2026-03
+    target: https://www.esafety.gov.au/about-us/industry-regulation/social-media-age-restrictions#compliance-update-march-2026
+
+  TechPolicyPress-2026:
+    title: "Tracking Efforts To Restrict Or Ban Teens from Social Media Across the Globe"
+    author:
+      - org: Tech Policy Press
+    date: 2026-02
+    target: https://www.techpolicy.press/tracking-efforts-to-restrict-or-ban-teens-from-social-media-across-the-globe/
+
+  Interface-EU-2026:
+    title: "Social Media Age Gating in the EU"
+    author:
+      - ins: J. Galissaire
+      - ins: S. Gomez
+      - ins: L-M. Böswald
+      - org: Interface
+    date: 2026-05
+    target: https://www.interface-eu.org/publications/social-media-age-gating-eu
+
   KGI-AgeAssurance-2026:
     title: "Age Assurance Online: A Technical Assessment of Current Systems and their Limitations"
     author:
@@ -169,9 +299,9 @@ Prior focus on child safety has led to robust trust and safety measures taken by
 
 In parallel, network operators have for many years implemented forms of age-based access control that rely on content categorization or DNS-level filtering rather than on the collection of personal data. In several jurisdictions, ISPs are required to offer or enforce filtering systems that restrict access to adult or otherwise unsuitable content for minors. These systems typically work by classifying destination domains or content types into broad categories—such as adult, gambling, or violence—and allowing or blocking them according to the subscriber’s or guardian’s chosen policy. Because they do not require identity documents or individual profiling, such network-assisted methods can provide a baseline of child protection with substantially lower privacy risk. These approaches cannot replace service-level moderation or legal accountability, nor should they be standalone solutions outside of parental controls or family management settings.
 
-Relatively new are proposals to protect children via age gate. Age gating in the analog world is typically enforced at the point of action, sale or entry through hard document checks at liquor stores, as one example. Replicating age gating in the online world has encountered consistent tensions between accuracy and privacy, often reducing the problem to one of feasibility. Often, online age verification has taken the form of requiring websites to show a prompt to the user to self-declare their age or birthdate before they can gain access to content or services. Similar to the aims of this document, advocacy groups have since evaluated deployed age-assurance systems against accuracy, availability, and circumvention. [KGI-AgeAssurance-2026]
+Relatively new are proposals to protect children via age gate. Age gating in the analog world is typically enforced at the point of action, sale or entry through hard document checks at liquor stores, as one example. Replicating age gating in the online world has encountered consistent tensions between accuracy and privacy, often reducing the problem to one of feasibility. Often, online age verification has taken the form of requiring websites to show a prompt to the user to self-declare their age or birthdate before they can gain access to content or services. Similar to the aims of this document, advocacy groups have since evaluated deployed age-assurance systems against accuracy, availability, and circumvention. [KGI-AgeAssurance-2026] Other existing frameworks cut this differently—for example, by categorizing methods as declaration, inference, estimation, or verification [FPF-Infographic], or as identity-document verification, age estimation, and self-declaration [DTSP]—and arrive at a similar conclusion that no single method or category fits every context. Standards bodies and civil-society organizations have likewise proposed frameworks for reasoning about these systems, including a formal ISO framework for age assurance systems [ISO-27566-1] and a risk-tiered approach to when high-assurance methods are warranted at all [PublicKnowledge-2026].
 
-Some services, websites, or apps require uploading hard documents to verify identity, just as some services, websites or apps require payment with a credit card. These often create an illusion for policy makers that users could be required by any service to require sharing of the same hard documents or credit card details in order to verify age at scale, both for all users and for a wide variety of platforms and services. However any such system is expensive, difficult to scale, and introduces data protection liability and privacy risks to users— including potential data breaches or the exclusion of users who do not possess traditional identity documents but who would otherwise be lawful users. Hard document identity review in the context of general-use platforms like social media unnecessarily scales the risk of privacy, access, and equity harms from requisite age gating for all users on all apps all the time.
+Some services, websites, or apps require uploading hard documents to verify identity, just as some services, websites or apps require payment with a credit card. These often create an illusion for policy makers that users could be required by any service to require sharing of the same hard documents or credit card details in order to verify age at scale, both for all users and for a wide variety of platforms and services. However any such system is expensive, difficult to scale, and introduces data protection liability and privacy risks to users— including potential data breaches or the exclusion of users who do not possess traditional identity documents but who would otherwise be lawful users. Hard document identity review in the context of general-use platforms like social media unnecessarily scales the risk of privacy, access, and equity harms from requisite age gating for all users on all apps all the time. These are not hypothetical harms: journalists, LGBTQIA+ people, and others relying on anonymity have already had identifying documents linked back to their online activity through breaches of age-verification providers. [CDT-Guardian-2026]
 
 Many age verification methods conflict with data-protection frameworks and data minimization principles and pose serious safety, data security, and privacy risks. As such risks will be present in nearly all alternative methods of age verification, an overview of this category of risk will be of some benefit, while we leave method-specific commentary to the security, privacy and human rights considerations sections. Requiring all users on all platforms to submit verifiable credentials can create large, sensitive data troves in centralized intermediaries that are vulnerable to breaches, fraud, or misuse. Once compromised, this information is difficult—if not impossible—to secure again. Compounding these concerns, precise location—required to determine compliance with jurisdiction-specific laws—is implicitly inferred in all methods, adding another layer of sensitive data to the name and age information being collected, processed, and stored.
 
@@ -215,11 +345,11 @@ Language matters because it shapes how we think about these systems. "Assurance"
 
 # Analysis of age gating methods
 
-In this section, we analyse methods along two dimensions: efficacy and privacy. Efficacy asks whether a mechanism works: is it feasible to operate at the scale required, is it durable against circumvention, and is it accurate. Privacy asks what a mechanism costs even when it works as intended: what it discloses beyond age, to whom, and for how long. These are the same two dimensions mapped by the effectiveness/privacy-concern chart later in this section; here we make each explicit before describing individual methods.
+In this section, we analyse methods along two dimensions: efficacy and privacy. Efficacy asks whether a mechanism works: is it feasible to operate at the scale required, is it durable against circumvention, and is it accurate. Privacy asks what a mechanism costs even when it works as intended: what it discloses beyond age, to whom, and for how long. We make each explicit here before describing individual methods below.
 
 Efficacy should also reflect cooperation across layers—service, device, and network—so that no single actor bears full responsibility or control of user data. Feasibility has two components: operational feasibility, whether the system can run at the latency and scale required without forcing harmful centralization; and population feasibility, or availability—what fraction of the people a method is meant to serve can actually produce what it demands. A method with excellent operational feasibility can still fail on availability, as when a government-ID check works flawlessly for ID-holders but simply cannot assess the substantial number of people who lack one; we treat that as a feasibility failure rather than an accuracy one, since it is a question of coverage rather than measurement error. Circumvention may occur not only by users but also through weak or misaligned intermediaries; distributing enforcement across independent layers limits large-scale bypass. Accuracy, for those a method can assess at all, is not a single number: methods trade off a false-accept rate against a false-reject rate, and are usually tunable along that curve—for example, a facial age-estimation system can lower its false-accept rate by requiring an estimate well clear of the threshold age, at the cost of a higher false-reject rate for people who are in fact old enough. Differential accuracy—whether that trade-off lands worse for some populations than others—is part of this same accuracy question. Recourse and remedy—who is responsible and what happens when a determination is wrong, a method proves infeasible, unavailable, or unadopted, a control is circumvented, or data is breached—is not a category of its own, but a question of accountability applied wherever the above fail.
 
-Privacy asks what a method costs beyond whether it works. Two questions recur across the methods below: what does the method disclose to a verifying party beyond age itself, and how long is that information—or the infrastructure built to hold it—retained; and, given that people and code are imperfect, how severe is the exposure if that data is breached. The latter is a function of both privacy exposure and the feasibility choices above—a method that centralizes look-ups compounds the severity of any breach. We map methods along both dimensions in the effectiveness/privacy-concern chart below.
+Privacy asks what a method costs beyond whether it works. Two questions recur across the methods below: what does the method disclose to a verifying party beyond age itself, and how long is that information—or the infrastructure built to hold it—retained; and, given that people and code are imperfect, how severe is the exposure if that data is breached. The latter is a function of both privacy exposure and the feasibility choices above—a method that centralizes look-ups compounds the severity of any breach.
 
 The subsections below are organized by trust anchor—the entity or artifact that stands behind an age claim—rather than by concrete technical method. A government-issued credential, a party with direct verified knowledge, an assurance intermediary of varying confidence, and an inference from behavioural or biometric signals each root the claim differently, even when the same underlying method (a document scan, a facial estimate, a linked account) is put to use in more than one of them. This means the categories below overlap: a given method can recur across sections depending on who invokes it and what they are vouching for. We use this framing because it surfaces where a technical solution can or cannot actually reinforce the trust anchor it is meant to serve, and where the anchor itself is doing less work than assumed.
 
@@ -255,11 +385,11 @@ KYC (know-your-customer laws in countries that define certain industries as sens
 
 Operating system–level verification shifts responsibility to device vendors and app ecosystems. While this potentially removes redundancy for users who already have a trust relationship with these intermediaries, this approach would concentrate power in a few private actors. The few OS or app ecosystems could incentivize and or be required to facilitate wider-spread age data requests from apps. They could also be in a position to determine or enforce access across wider categories of apps or content beyond characteristics such as age. Such centralization would raise competition, transparency, and accountability concerns, particularly where OS providers operate globally but respond to local regulatory pressures.
 
-Other third-party intermediaries or age verification services could offer modular, privacy-preserving verification as a service layer. Yet without strong oversight and interoperability standards, these actors could create new forms of data brokerage, fragmentation, or lock-in. Their economic incentives—to monetize verification or analytics—may conflict with users’ social and cultural rights, especially if pricing or access varies across regions.
+Other third-party intermediaries or age verification services could offer modular, privacy-preserving verification as a service layer. Yet without strong oversight and interoperability standards, these actors could create new forms of data brokerage, fragmentation, or lock-in. Their economic incentives—to monetize verification or analytics—may conflict with users’ social and cultural rights, especially if pricing or access varies across regions. Measurement of deployed age verification on the web bears this out: a small number of third-party providers account for the large majority of observed deployments, and at least one leading provider has been found to collect government-ID scans, selfies, and payment data while sharing information with additional, less-visible parties beyond the contracted provider. [PapersPlease-2026]
 
 In many jurisdictions, regulated entities such as banks or telecommunications operators already perform age or identity checks under audited privacy frameworks. Extending such existing infrastructures with additional privacy-preserving layers could bridge regulatory and technical feasibility.
 
-Verifiers should be held accountable in systems where they are disclosed information (no matter how privacy preserving). Those presenting proofs should have a way to report or contest a request or determination made within these systems. Especially in the case of denial of access. Treating the user as the only potentially hostile party would ignore the power dynamics in jurisdictions where age verification is mandatory. Also, verifiers should be held to a standard of reporting and registration of their scope of collection. Especially in countries where age verification systems are being developed in tandem with digital ID systems.
+Verifiers should be held accountable in systems where they are disclosed information (no matter how privacy preserving). Those presenting proofs should have a way to report or contest a request or determination made within these systems. Especially in the case of denial of access. Treating the user as the only potentially hostile party would ignore the power dynamics in jurisdictions where age verification is mandatory. Also, verifiers should be held to a standard of reporting and registration of their scope of collection. Especially in countries where age verification systems are being developed in tandem with digital ID systems. Existing certification and industry-standards efforts—such as the US COPPA Safe Harbor program, EU-aligned Europrivacy certification, and the UK's Age-Appropriate Design Certification Scheme [UNICEF-Cert-2025]—illustrate what such accountability structures can look like in practice, though they also show the risk of regulatory capture and uneven adoption when standards bodies are dominated by industry participants [UNICEF-Standards-2025].
 
 ## Age assurance
 
@@ -283,7 +413,7 @@ The service itself could perform age verification, age estimation or age assuran
 
 Some examples of age estimation or inference of age have been proposed to use a variety of behavioural and context-specific signals, not all of which users explicitly opt in to. There are general concerns that the use of user data for the purposes of age estimation can contravene data privacy frameworks that limit data usage to specific consent structures. Nonetheless we elaborate a couple of mechanisms here:
 
-The behaviour of a user on a platform, including who they are friends with or what kind of content they engage in can provide some clues as to their age. However this data is limited to what service providers know about these users and is not as accurate for younger users since statistically there are fewer ways for the platform to know that its estimation is accurate.
+The behaviour of a user on a platform, including who they are friends with or what kind of content they engage in can provide some clues as to their age. However this data is limited to what service providers know about these users and is not as accurate for younger users since statistically there are fewer ways for the platform to know that its estimation is accurate. In deployment, this typically pairs behavioral signal-based estimation with a dispute mechanism: a user who disputes their estimated age may be asked to submit a government-ID photo or a live selfie instead, shifting from inference to verification only for the subset of users the initial estimate could not confidently place. [Google-Blog]
 
 Biometric signals are considered age estimation rather than age assurance or verification because it’s not rooted in authoritative or ground truth. Biometric methods such as image or video facial scans are accompanied by a variety of flaws that prevent it from being a reasonable alternative. First, facial analysis technology is notoriously unreliable in estimating age, especially for teenagers, whose facial features change rapidly and vary widely. [NIST-IR-7995] These tools can also misclassify users depending on factors such as lighting, ethnicity, or facial expression [Ganel-2022]. Because faces near a threshold age (e.g., 18) are hard to distinguish from one week to the next, deployments typically apply a buffer, only accepting estimates significantly above the threshold; this reduces the false-accept rate but necessarily increases the false-reject rate for people who are in fact old enough, illustrating that facial estimation does not have one accuracy figure so much as a chosen point on that trade-off. [KGI-AgeAssurance-2026]
 
@@ -301,12 +431,7 @@ Rather than continuous geolocation, minimal-exposure signaling between networks 
 
 Content moderation more broadly is the commitment of services and platforms to ensure online experiences are fit for purpose, given the intended user base. For example certain k-12 educational websites with user generated content are certainly engaged in some strong degree of content moderation because the platform is for learning in schools, and not, say, popular culture or entertainment.
 
-Each of these approaches sits toward the low-privacy-cost end of the chart below: market-based and network-level filtering are designed to avoid new data collection altogether, trading some effectiveness for that privacy floor.
-
-## Age-Gating Methods Mapped by Effectiveness and Privacy Concern
-The figure below maps age-gating methods along two axes: the degree of privacy concern they introduce (left to right) and their relative effectiveness at restricting access by age (bottom to top). Methods in the upper-right quadrant are both more effective and more privacy-invasive, while those in the lower-left impose fewer privacy costs but offer weaker assurance.
-
-![Age verification methods by privacy concern and effectiveness](https://github.com/mallory/draft-knodel-age-arch/blob/main/age-methods-matrix.svg)
+Each of these approaches sits toward the low-privacy-cost end of the spectrum described above: market-based and network-level filtering are designed to avoid new data collection altogether, trading some effectiveness for that privacy floor.
 
 # Enforcement
 
@@ -314,7 +439,7 @@ Once age has been determined to a satisfactory degree, it’s important to inter
 
 Enforcement is not a one-time determination. Long-standing, existing users who predate any age check pose a genuine question of how to obtain accurate age information retroactively, without simply re-running the same intrusive checks on an already-established user base. A related question arises as users age: how someone can "age up" in a platform over time, retaking full control of their account and data without ongoing parental or guardian oversight once they are no longer a minor.
 
-It is generally important to note that the very definition of “adult content” is not universal. Material that one jurisdiction or culture classifies as adult—such as partial nudity, depictions of smoking, or the use of firearms—may be considered artistic, commercial, or sporting content elsewhere. As a result, even a compliant service might not be aware that some of its material would qualify as adult under another legal framework. This variability underscores the need for proportional, interoperable signaling systems rather than rigid or global classifications.
+It is generally important to note that the very definition of “adult content” is not universal. Material that one jurisdiction or culture classifies as adult—such as partial nudity, depictions of smoking, or the use of firearms—may be considered artistic, commercial, or sporting content elsewhere. As a result, even a compliant service might not be aware that some of its material would qualify as adult under another legal framework. This variability underscores the need for proportional, interoperable signaling systems rather than rigid or global classifications. Comparative regulatory analysis across jurisdictions confirms this divergence extends beyond content classification to the underlying regulatory philosophy itself—from safety-by-design co-regulation to rights-based frameworks to content-control-oriented approaches—cautioning against transplanting one jurisdiction's regime into another without adaptation. [TechLegality]
 
 Platforms and services enforce by limiting access or visibility of certain categories of content based on the verified age attribute of a user or account. This can take several forms: hard blocks on sign-up, “shadow” restrictions such as hiding posts from underage accounts, or algorithmic filtering that reduces exposure to sensitive material. Enforcement at the service level can also include requiring a logged-in session tied to an attested age, but this raises issues around traceability, persistent identifiers, and the erosion of anonymous access to lawful content. Where the same attestation, token, or credential is reused to satisfy multiple services' enforcement requirements, this traceability compounds into cross-platform tracking: rather than minimizing the information any one service holds, it spreads the same underlying data across platforms and enables correlation of a user's activity across otherwise unrelated services.
 
@@ -322,7 +447,7 @@ Devices enforce by interpreting or acting on signals from applications, browsers
 
 Some considerations for networks that enforce age gating may be instructive for any system design as well, though content moderation at this lower network layer tends to be objectionable [RFC9505]:
 
-* There exist internet standards for any service to signal to the user that it is adult-only. Any device, including web browsers, can elect to confirm this signal. It would be recommended to require all services that disallow users under a specific age to use this standard to use the “restricted to adults” label and that the OS, browser and app levels heed this signal [RTA]. This should also be paired with self-attestation methods. Enforced by an ISP would be network level censorship.
+* There exist internet standards for any service to signal to the user that it is adult-only. Any device, including web browsers, can elect to confirm this signal. It would be recommended to require all services that disallow users under a specific age to use this standard to use the “restricted to adults” label and that the OS, browser and app levels heed this signal [RTA]. Adoption remains marginal today—on the order of a few thousand sites among the web's top one million [PapersPlease-2026]—suggesting voluntary signaling alone is insufficient without device or browser-level enforcement. This should also be paired with self-attestation methods. Enforced by an ISP would be network level censorship.
 * Similar signaling could extend to DNS or resolver functions, where privacy-preserving flags indicate that a domain hosts age-restricted material. [Cloudflare-Families] Such information can guide optional filtering at the user or guardian’s request without content inspection or identity disclosure.
 
 There is a view that common, interoperable approaches across service, device, and network layers could lower compliance costs and align incentives for safer adoption. However this lowering of barriers to implementation would be considered a negative if age-gating is considered a form of disenfranchisement and censorship, or if the age-gating capabilities are applied to additional attributes of end users.
@@ -331,7 +456,7 @@ There is a view that common, interoperable approaches across service, device, an
 
 Age-assurance mechanisms cannot be applied uniformly across the Internet. Different platforms handle user data, content, and legal obligations in distinct ways, and therefore require proportionate, context-aware approaches. Enforcement can occur at several layers: core infrastructure and access networks may provide category-level controls; devices and browsers can interpret standardized labels; and services can apply context-specific age checks. Aligning these layers reduces redundancy and risk while maintaining privacy.
 
-The most visible and contested area is that of **general-use platforms**—social-media, messaging, gaming, and app-distribution ecosystems that mix adult and minor audiences. These platforms collect large volumes of user data and operate globally, making privacy, feasibility, and jurisdictional diversity critical design challenges. In some jurisdictions, regulations already mandate the blocking or restriction of specific platforms for under-age users—for example, national orders prohibiting access to social-media services such as TikTok for minors. Such measures highlight both the policy urgency and the architectural complexity of enforcing age-based restrictions at scale.
+The most visible and contested area is that of **general-use platforms**—social-media, messaging, gaming, and app-distribution ecosystems that mix adult and minor audiences. These platforms collect large volumes of user data and operate globally, making privacy, feasibility, and jurisdictional diversity critical design challenges. In some jurisdictions, regulations already mandate the blocking or restriction of specific platforms for under-age users—for example, Australia's under-16 social-media ban, in effect since December 2025, which had removed or restricted several million accounts within its first few months of enforcement [eSafety-AU-2026]. Similar or proposed measures are under consideration across a majority of EU member states [Interface-EU-2026] and a growing number of jurisdictions globally [TechPolicyPress-2026]. Such measures highlight both the policy urgency and the architectural complexity of enforcing age-based restrictions at scale.
 
 **General-use platforms** can be grouped by how users interact and how moderation and access controls are applied:
 - **Social-interaction platforms** (e.g., video-sharing, live streaming) — rely heavily on user-generated content and recommendation algorithms; enforcement combines self-attestation, parental tools, and service-level moderation.
@@ -377,7 +502,7 @@ Categorizing platforms in this way clarifies that age-assurance methods—rangin
 
 * Content moderation of user generated content by platforms and services continues to be an established and effective way to ensure unlawful and disallowed content and behaviour is detected or reported and actioned with proper recourse and remedy mechanisms in the case of overreach.
 
-* A more resilient approach may rely on a plurality of mechanisms operating at different layers of the Internet architecture—service, device, and network—each limited in scope and aligned with privacy-by-design principles. In this model, no single actor holds or processes all user information; rather, complementary methods (for example, self-attestation, trusted-service assurance, or privacy-preserving network-assisted filtering) can contribute to age-appropriate access control according to local regulation and user choice. Such diversity of methods can improve overall robustness and inclusiveness while reducing dependence on any single trust anchor. Contradicting data-protection principles like minimization means that if widely implemented without such safeguards, age-verification systems could still result in mass data collection on both adults and children, with far-reaching implications for user privacy and safety.
+* A more resilient approach may rely on a plurality of mechanisms operating at different layers of the Internet architecture—service, device, and network—each limited in scope and aligned with privacy-by-design principles. In this model, no single actor holds or processes all user information; rather, complementary methods (for example, self-attestation, trusted-service assurance, or privacy-preserving network-assisted filtering) can contribute to age-appropriate access control according to local regulation and user choice. Such diversity of methods can improve overall robustness and inclusiveness while reducing dependence on any single trust anchor. Contradicting data-protection principles like minimization means that if widely implemented without such safeguards, age-verification systems could still result in mass data collection on both adults and children, with far-reaching implications for user privacy and safety. Any deployment should be proportional and narrowly tailored to the specific harm it targets, rather than a blanket requirement applied uniformly regardless of risk. [CDT-Guardrails-2025]
 
 * Age gating naturally puts a barrier to entry on a given site, and publishers who have spent significant effort optimising their sites for ease of use are now being asked to pay a third party to turn away a share of their customers—both legitimate and otherwise. The economic argument for a publisher to simply ignore the law is strong, particularly where a law is enacted in a jurisdiction where that publisher has no legal entity. In the often-cited example of pornography, this dynamic is likely to produce many more non-compliant sites than compliant ones, and non-compliant sites are likely to be non-compliant in other ways too—for example, failing to age-gate their own content creators.
 
@@ -406,7 +531,7 @@ Guardian and parental controls – The main concern with these parental controls
 
 # Human rights considerations
 
-There is also significant agreement amongst the civil liberties and human rights communities that age verification poses more peril than the promise because of, “the ways in which they are often inaccurate; can be circumvented; present privacy and security risks; and may be entirely inaccessible to certain groups, including undocumented immigrants, unbanked individuals, people with disabilities, and others who either do not have access to government ids or who might be more commonly misidentified by biometric technology.” [CDT-2024] This peril is compounded by a contested evidence base: cross-national analyses have not established a consistent, measurable link between social media use and declines in youth well-being, and much of the research relied upon by proponents of youth social-media bans has been criticized for methodological weaknesses that overlook confounding factors such as pre-existing mental health conditions. [EFF-ScienceNotSettled-2026]
+There is also significant agreement amongst the civil liberties and human rights communities that age verification poses more peril than the promise because of, “the ways in which they are often inaccurate; can be circumvented; present privacy and security risks; and may be entirely inaccessible to certain groups, including undocumented immigrants, unbanked individuals, people with disabilities, and others who either do not have access to government ids or who might be more commonly misidentified by biometric technology.” [CDT-2024] This peril is compounded by a contested evidence base: cross-national analyses have not established a consistent, measurable link between social media use and declines in youth well-being, and much of the research relied upon by proponents of youth social-media bans has been criticized for methodological weaknesses that overlook confounding factors such as pre-existing mental health conditions. [EFF-ScienceNotSettled-2026] Human rights bodies have raised similar concerns about blanket bans specifically: they are easily circumvented and can push children toward less-monitored spaces, whereas the harms motivating them more often stem from specific design choices—such as infinite scroll, autoplay, and persistent notifications—that safety-by-design requirements could address more directly than an age gate. [OHCHR-UN-2026] Children's-rights organizations have raised a related but distinct concern: legislative responses are proliferating faster than the evidence base can keep up with, and any framework must weigh child-protection goals alongside these same rights rather than treating them as mutually exclusive. [UNICEF-Line]
 
 
 The Universal Declaration of Human Rights is fundamental to designing technical means of age-gating but also whether and how these means are implemented [RFC8280]. Prior, we have addressed privacy in the previous section. Additionally are considerations for free expression and free association. Economic, Social and Cultural rights are also important to consider as these include the right to personhood eg hard documents issued by the state; but also how age-gating might impact a variety of aspects of life for young people in the digital age.
