@@ -44,6 +44,21 @@ normative:
 informative:
   RFC9505:
   RFC8280:
+  ARTICLE19-ChinaID-2025:
+    title: "China: Draft Internet ID Measure Threatens to Tighten Online Censorship"
+    author:
+      - org: ARTICLE 19
+    date: 2025-02-04
+    target: https://www.article19.org/resources/china-draft-internet-id-measure-tightening-online-censorship/
+
+  TechPolicyPress-Marechal-2026:
+    title: "Tech Policy Is On the Front Line of Fascism vs. Democracy. Pick a Side."
+    author:
+      - ins: N. Maréchal
+      - org: Tech Policy Press
+    date: 2026-05-04
+    target: https://www.techpolicy.press/tech-policy-is-on-the-front-line-of-fascism-vs-democracy-pick-a-side/
+
   DTSP:
     title: "Age Assurance: Guiding Principles and Best Practices"
     author:
@@ -381,7 +396,7 @@ A guardian who is accountable for the child assures the child’s age. This can 
 
 A jurisdiction or a governmental agency to be the arbiter of whether a citizen or resident would be allowed to have access to the internet or access specific websites and services. This would have both process and political consequences.
 
-KYC (know-your-customer laws in countries that define certain industries as sensitive, such as banks, telecoms, etc) could theoretically be extended to any industry including social media, education platforms or blogging websites. However, doing so would blur the line between financial compliance and social regulation, embedding surveillance logics into general internet use. It could also make access to general-use and basic communication services contingent on a financial transaction framework, which not all internet-accessible platforms and services provide.
+KYC (know-your-customer laws in countries that define certain industries as sensitive, such as banks, telecoms, etc) could theoretically be extended to any industry including social media, education platforms or blogging websites. However, doing so would blur the line between financial compliance and social regulation, embedding surveillance logics into general internet use. Absent a legal mandate to do otherwise, verifying parties tend toward the cheapest available option rather than the most protective one, and data collected for this purpose can enter the broader data-broker ecosystem, where it becomes vulnerable to unknown, non-consensual secondary uses—including acquisition by a government seeking to identify individuals it could not otherwise lawfully compel disclosure from. [TechPolicyPress-Marechal-2026] It could also make access to general-use and basic communication services contingent on a financial transaction framework, which not all internet-accessible platforms and services provide.
 
 Operating system–level verification shifts responsibility to device vendors and app ecosystems. While this potentially removes redundancy for users who already have a trust relationship with these intermediaries, this approach would concentrate power in a few private actors. The few OS or app ecosystems could incentivize and or be required to facilitate wider-spread age data requests from apps. They could also be in a position to determine or enforce access across wider categories of apps or content beyond characteristics such as age. Such centralization would raise competition, transparency, and accountability concerns, particularly where OS providers operate globally but respond to local regulatory pressures.
 
@@ -507,6 +522,8 @@ Categorizing platforms in this way clarifies that age-assurance methods—rangin
 * Age gating naturally puts a barrier to entry on a given site, and publishers who have spent significant effort optimising their sites for ease of use are now being asked to pay a third party to turn away a share of their customers—both legitimate and otherwise. The economic argument for a publisher to simply ignore the law is strong, particularly where a law is enacted in a jurisdiction where that publisher has no legal entity. In the often-cited example of pornography, this dynamic is likely to produce many more non-compliant sites than compliant ones, and non-compliant sites are likely to be non-compliant in other ways too—for example, failing to age-gate their own content creators.
 
 # Security considerations
+
+Age verification is broadly framed as a child-safety measure, but its practical effect is to normalize general-purpose, identity-check infrastructure across the internet. That normalization is itself a cybersecurity as much as it is a civil-liberties problem, independent of how well any single implementation is designed. Once a mechanism exists for identity verification, including age, at scale, it does not stay confined to its stated purpose or to the systems that were originally built to require it: the same infrastructure becomes available to whichever actor is best positioned to compel or acquire it, including a government motivated to identify individuals it could not otherwise lawfully compel disclosure from. One prior case of attempt to standardize ID verification in the IETF was avoided previously for the same reasons [ARTICLE19-ChinaID-2025]. A strong "critique of security" is bold enough to recognize that the government-led requirement to acquire data to target disfavored groups risks constructing the tracking apparatus consistent with fascism. [TechPolicyPress-Marechal-2026]
 
 In general the cross-platform and over-the-wire exchange of information described in nearly all of the architectural choices above implicate security risks due to the complexity of the requirements, cooperation between several different parties and the expectation that this would be done at scale, for all users, not– perhaps naively assumed– just for youth.
 
