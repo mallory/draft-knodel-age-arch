@@ -295,6 +295,15 @@ informative:
       - org: Center for Democracy & Technology (CDT)
     date: 2024-09-23
     target: https://cdt.org/insights/cdt-files-amicus-brief-in-free-speech-coalition-v-paxton-challenging-tx-age-verification-law
+ 
+  Independent-Bluesky:
+    title: "Bluesky blocks app in US state over new law"
+    author:
+      - ins: Anthony Cuthbertson
+      - org: Independent
+    date: 2025-08-25
+    target: https://www.independent.co.uk/tech/bluesky-block-mississippi-law-b2813621.html
+
 
   RTA:
     title: "RTA Label"
@@ -541,7 +550,7 @@ Privacy is one of the two dimensions used to analyse methods in this document; t
 
 In general, any mandatory age verification will technically enforce limitations of being anonymous online and the right to access resources on the web without being bound to a general or long term identification process over time, which have implications for human rights.[UN-HRC-29-32]
 
-Location – Many of these approaches would also require collection of precise location information to comply with jurisdiction-by-jurisdiction privacy laws or other requirements. Geolocating users remains an unsolved problem: inaccurate geolocation means people will be unnecessarily excluded or have an incorrect set of laws applied to them, and this problem is likely to get worse as IPv4 fragments further.
+Location – Many of these approaches would also require collection of precise location information to comply with jurisdiction-by-jurisdiction privacy laws or other requirements. Geolocating users remains an unsolved problem: inaccurate geolocation means people will be unnecessarily excluded or have an incorrect set of laws applied to them, and this problem is likely to get worse as IPv4 fragments further. Examples of this issue abound, including Bluesky restricting access from the state of Mississippi, and accidentally including cell data users whose data just happened to route through the state [Independent-Bluesky]. We should not assume that the "where are you" problem is any more tractable than the "how old are you" problem, the issues in privacy, friction and reliability are very similar. 
 
 Guardian and parental controls – The main concern with these parental controls features is that they enable use but potentially, depending on how they are designed, surveilled use, which may harm children and teens by creating confusion about their privacy and autonomy. On the one hand they may feel a false sense of privacy and that their activities are insulated from the platform, and on the other hand they might self-censor out of concern for the oversight that the parental controls provide their caretakers. These proposals take a narrow view of parent-child relationships and fail to consider the harms as described briefly by CDT: “In particular, LGBTQ youth and children in abusive homes are especially vulnerable to injury and reprisals, including from their parents or guardians, and may inadvertently expose sensitive information about themselves or their friends to adults, with disastrous consequences.” [CDT-2021]
 
