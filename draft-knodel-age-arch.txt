@@ -5,12 +5,12 @@
 Network Working Group                                          M. Knodel
 Internet-Draft                                     Social Web Foundation
 Intended status: Informational                             G. A. Scalone
-Expires: 7 January 2027                                   Vodafone Group
+Expires: 10 April 2027                                    Vodafone Group
                                                                T. Newton
                                                                    Qoria
                                                                A. Hingle
                                                           Exchange Point
-                                                             6 July 2026
+                                                          7 October 2026
 
 
                      Age Verification Architecture
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2027.
+   This Internet-Draft will expire on 10 April 2027.
 
 Copyright Notice
 
@@ -104,13 +104,14 @@ Table of Contents
    solutions that are separate from, albeit often motivated by, the
    means of protecting young people online.
 
-   Prior focus on child safety has led to robust trust and safety
-   measures taken by large user platforms whereby content and behaviour
-   moderation became industry standard.  Its phases: Define, detect,
-   evaluate, enforce, appeal, educate.  This cycle ensures that criminal
-   and unlawful content is taken down.  Platforms and services with user
-   generated content can also use this cycle to ensure content or
-   behavior that violates platform terms of service.
+   Prior focus on child safety has led to trust and safety measures
+   taken by large user platforms whereby content and behaviour
+   moderation became industry standard.  The phases of the content
+   moderation cycle to deal with criminal and unlawful content: Define,
+   detect, evaluate, enforce, appeal, educate.  Platforms and services
+   with user generated content can also use this cycle to ensure content
+   or behavior that violates platform terms of service.
+   [Kamara-E2EE-2022]
 
    In parallel, network operators have for many years implemented forms
    of age-based access control that rely on content categorization or
@@ -1233,6 +1234,12 @@ Table of Contents
               and privacy protection — Age assurance systems — Part 1:
               Framework", 2025,
               <https://www.iso.org/standard/88143.html>.
+
+   [Kamara-E2EE-2022]
+              Kamara, S., Knodel, M., Llansó, E., Nojeim, G., Qin, L.,
+              Thakur, D., and C. Vogus, "Outside Looking In: Approaches
+              to Content Moderation in End-to-End Encrypted Systems", 9
+              February 2022, <https://arxiv.org/abs/2202.04617>.
 
    [KGI-AgeAssurance-2026]
               Rescorla, E., Arnao, Z., Cooper, A., and Knight-Georgetown
