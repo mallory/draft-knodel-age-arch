@@ -300,6 +300,20 @@ informative:
     title: "RTA Label"
     target: https://www.rtalabel.org
 
+  Kamara-E2EE-2022:
+    title: "Outside Looking In: Approaches to Content Moderation in End-to-End Encrypted Systems"
+    author:
+      - ins: S. Kamara
+      - ins: M. Knodel
+      - ins: E. Llansó
+      - ins: G. Nojeim
+      - ins: L. Qin
+      - ins: D. Thakur
+      - ins: C. Vogus
+    date: 2022-02-09
+    target: https://arxiv.org/abs/2202.04617
+
+
 --- abstract
 
 This document describes solution-agnostic and technology-neutral schema for how various intermediaries can gate content and services based on age. The analysis of the architecture is done along two dimensions: the efficacy of permitting or restricting access based on age, and the privacy cost of doing so. The document concludes with recommendations as well as critical privacy, security and human rights considerations.
@@ -310,7 +324,7 @@ This document describes solution-agnostic and technology-neutral schema for how 
 
 Our goal is to describe the technical difficulties in any age-gating mechanism such that it is effective and does not introduce security and privacy risks as well as contravene human rights. We also hope to show that age verification mechanisms are wholly technical solutions that are separate from, albeit often motivated by, the means of protecting young people online.
 
-Prior focus on child safety has led to robust trust and safety measures taken by large user platforms whereby content and behaviour moderation became industry standard. Its phases: Define, detect, evaluate, enforce, appeal, educate. This cycle ensures that criminal and unlawful content is taken down. Platforms and services with user generated content can also use this cycle to ensure content or behavior that violates platform terms of service.
+Prior focus on child safety has led to trust and safety measures taken by large user platforms whereby content and behaviour moderation became industry standard. The phases of the content moderation cycle to deal with criminal and unlawful content: Define, detect, evaluate, enforce, appeal, educate. Platforms and services with user generated content can also use this cycle to ensure content or behavior that violates platform terms of service. [Kamara-E2EE-2022]
 
 In parallel, network operators have for many years implemented forms of age-based access control that rely on content categorization or DNS-level filtering rather than on the collection of personal data. In several jurisdictions, ISPs are required to offer or enforce filtering systems that restrict access to adult or otherwise unsuitable content for minors. These systems typically work by classifying destination domains or content types into broad categories—such as adult, gambling, or violence—and allowing or blocking them according to the subscriber’s or guardian’s chosen policy. Because they do not require identity documents or individual profiling, such network-assisted methods can provide a baseline of child protection with substantially lower privacy risk. These approaches cannot replace service-level moderation or legal accountability, nor should they be standalone solutions outside of parental controls or family management settings.
 
